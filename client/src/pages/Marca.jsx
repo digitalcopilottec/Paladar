@@ -6,6 +6,8 @@ const SLOTS = [
     dica: 'Aparece no login, no menu, no totem e na tela do cliente. Ideal: PNG quadrado com fundo transparente.' },
   { k: 'fundo', titulo: 'Arte de fundo da tela de início',
     dica: 'Aparece na tela do cliente (/display) enquanto ninguém está sendo atendido. Ideal: paisagem (4:3 ou 16:9).' },
+  { k: 'login', titulo: 'Fundo da tela de login',
+    dica: 'Aparece atrás do formulário de entrada do sistema. Ideal: paisagem (4:3 ou 16:9).' },
 ];
 
 export default function Marca() {

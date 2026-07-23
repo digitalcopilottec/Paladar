@@ -24,6 +24,7 @@ const MAX_BYTES = 8 * 1024 * 1024;
 const NOMES = {
   logo: 'logo',
   fundo: 'totem-fundo',
+  login: 'login-fundo',
 };
 
 router.post('/', (req, res) => {
