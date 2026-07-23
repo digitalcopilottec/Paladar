@@ -90,7 +90,10 @@ function Shell({ children }) {
 // `bare` = exige login mas ocupa a tela toda, sem menu lateral (ex.: KDS da cozinha).
 function Protected({ children, roles, bare }) {
   const user = auth.user;
-  if (!user) return <Navigate to="/login" replace />;
+  const loc = useLocation();
+  // Guarda de onde veio (ex.: /garcom) pra voltar pra lá depois do login —
+  // sem isso, todo mundo caía sempre no painel do gerente.
+  if (!user) return <Navigate to="/login" state={{ from: loc }} replace />;
   if (roles && !roles.includes(user.role) && user.role !== 'admin')
     return <Navigate to="/" replace />;
   return bare ? children : <Shell>{children}</Shell>;

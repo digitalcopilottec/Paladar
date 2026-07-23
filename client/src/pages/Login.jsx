@@ -1,10 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { api, auth } from '../api.js';
 import Logo from '../components/Logo.jsx';
 
 export default function Login() {
   const nav = useNavigate();
+  const loc = useLocation();
+  // Quando o Protected manda pro login (ex.: alguém abriu /garcom sem sessão),
+  // ele guarda de onde veio — depois de entrar, volta pra lá, não pro painel.
+  const destino = loc.state?.from ? loc.state.from.pathname + loc.state.from.search : '/';
   const [username, setU] = useState('');
   const [password, setP] = useState('');
   const [err, setErr] = useState('');
@@ -47,7 +51,7 @@ export default function Login() {
     return () => ro?.disconnect();
   }, [marca.login]);
 
-  if (auth.user) { nav('/'); }
+  if (auth.user) { nav(destino, { replace: true }); }
 
   async function submit(e) {
     e.preventDefault();
@@ -55,7 +59,7 @@ export default function Login() {
     try {
       const { token, user } = await api('/auth/login', { method: 'POST', body: { username, password } });
       auth.set(token, user);
-      nav('/');
+      nav(destino, { replace: true });
     } catch (e) { setErr(e.message); } finally { setLoading(false); }
   }
 
