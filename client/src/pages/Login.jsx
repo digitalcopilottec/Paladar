@@ -11,17 +11,19 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [marca, setMarca] = useState({});
   const wrapRef = useRef(null);
-  const [cardPos, setCardPos] = useState(null); // posição do card em cima da faixa vermelha
+  const [artRect, setArtRect] = useState(null);   // caixa real da imagem (preenchida/cortada)
+  const [cardPos, setCardPos] = useState(null);   // posição do card em cima da faixa vermelha
 
   useEffect(() => { api('/public/marca').then(setMarca).catch(() => {}); }, []);
 
-  // A imagem não estica (contain) — o card de login precisa acompanhar a faixa
+  // A imagem não estica (contain) — o card de login acompanha a faixa
   // vermelha da direita em vez de ficar preso no centro da tela, sem nunca
   // vazar pra fora da janela em nenhum tamanho de tela.
   useEffect(() => {
     if (!marca.login || !wrapRef.current) return;
     const el = wrapRef.current;
-    const CARD_W = 300, CARD_H = 520, MARGEM = 14;
+    const FOCO_X = 0.74, FOCO_Y = 0.5;
+    const CARD_W = 260, CARD_H = 340, MARGEM = 14;
     let ro;
     const img = new Image();
     img.onload = () => {
@@ -32,8 +34,9 @@ export default function Login() {
         const w = largo ? ch * ratio : cw;
         const h = largo ? ch : cw / ratio;
         const artLeft = (cw - w) / 2, artTop = (ch - h) / 2;
-        const cx = Math.min(cw - MARGEM - CARD_W / 2, Math.max(MARGEM + CARD_W / 2, artLeft + w * 0.74));
-        const cy = Math.min(ch - MARGEM - CARD_H / 2, Math.max(MARGEM + CARD_H / 2, artTop + h * 0.5));
+        setArtRect({ left: artLeft, top: artTop, width: w, height: h });
+        const cx = Math.min(cw - MARGEM - CARD_W / 2, Math.max(MARGEM + CARD_W / 2, artLeft + w * FOCO_X));
+        const cy = Math.min(ch - MARGEM - CARD_H / 2, Math.max(MARGEM + CARD_H / 2, artTop + h * FOCO_Y));
         setCardPos({ left: cx, top: cy });
       };
       calc();
@@ -58,14 +61,20 @@ export default function Login() {
 
   return (
     <div className={'login-wrap' + (marca.login ? ' com-fundo' : '')} ref={wrapRef}
-      style={marca.login ? { backgroundImage: `url(${marca.login})` } : undefined}>
-      <form className="login-card" onSubmit={submit}
+      style={marca.login ? {
+        backgroundImage: `url(${marca.login})`,
+        ...(artRect && {
+          backgroundSize: `${artRect.width}px ${artRect.height}px`,
+          backgroundPosition: `${artRect.left}px ${artRect.top}px`,
+        }),
+      } : undefined}>
+      <form className={'login-card' + (marca.login ? ' com-fundo' : '')} onSubmit={submit}
         style={marca.login && cardPos ? {
-          position: 'absolute', width: 300, maxWidth: 300,
+          position: 'absolute', width: 260, maxWidth: 260,
           left: cardPos.left, top: cardPos.top,
           transform: 'translate(-50%, -50%)',
         } : undefined}>
-        <Logo variant="red" className="brand-logo" />
+        {!marca.login && <Logo variant="red" className="brand-logo" />}
 
         {err && <div className="error-msg">{err}</div>}
 

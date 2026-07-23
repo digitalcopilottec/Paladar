@@ -76,22 +76,22 @@ export default function ConfigBuffet() {
               <tr key={p.id}>
                 <td>
                   <input className="input" value={p.name}
-                    onChange={e => set(p.id, 'name', e.target.value)} style={{ maxWidth: 200 }} />
+                    onChange={e => set(p.id, 'name', e.target.value)} style={{ minWidth: 160, maxWidth: 200 }} />
                 </td>
                 <td>
                   <select className="input" value={p.kind} onChange={e => set(p.id, 'kind', e.target.value)}
-                    style={{ maxWidth: 150 }}>
+                    style={{ minWidth: 120, maxWidth: 150 }}>
                     {Object.entries(KINDS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
                   </select>
                 </td>
                 <td style={{ textAlign: 'right' }}>
                   <input className="input" type="number" step="0.01" value={p.price}
-                    onChange={e => set(p.id, 'price', e.target.value)} style={{ maxWidth: 110, textAlign: 'right' }} />
+                    onChange={e => set(p.id, 'price', e.target.value)} style={{ minWidth: 90, maxWidth: 110, textAlign: 'right' }} />
                 </td>
                 <td style={{ textAlign: 'right' }}>
                   <input className="input" type="number" step="0.01" value={p.price_saturday}
                     onChange={e => set(p.id, 'price_saturday', e.target.value)}
-                    style={{ maxWidth: 110, textAlign: 'right' }} placeholder="0 = igual" />
+                    style={{ minWidth: 90, maxWidth: 110, textAlign: 'right' }} placeholder="0 = igual" />
                 </td>
                 <td style={{ whiteSpace: 'nowrap' }}>
                   <button className="btn sm" onClick={() => salvarPlano(p)}>Salvar</button>{' '}

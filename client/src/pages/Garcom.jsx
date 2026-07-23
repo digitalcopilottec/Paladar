@@ -121,7 +121,13 @@ export default function Garcom() {
           <button className="gc-sair" onClick={() => nav('/')}>Sair</button>
         </div>
         <div className={'gc-tipo' + (marca.fundo ? ' com-fundo' : '')} ref={artRef}
-          style={marca.fundo ? { backgroundImage: `url(${marca.fundo})` } : undefined}>
+          style={marca.fundo ? {
+            backgroundImage: `url(${marca.fundo})`,
+            ...(artRect && {
+              backgroundSize: `${artRect.width}px ${artRect.height}px`,
+              backgroundPosition: `${artRect.left}px ${artRect.top}px`,
+            }),
+          } : undefined}>
           {marca.fundo ? (
             artRect && (
               <button className="gc-tipo-btn gc-tipo-btn-art" onClick={comerAqui} style={{

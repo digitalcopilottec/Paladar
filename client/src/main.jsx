@@ -9,3 +9,11 @@ createRoot(document.getElementById('root')).render(
     <App />
   </HashRouter>
 );
+
+// PWA: registra o service worker (cache do app pra abrir instantâneo e
+// funcionar mesmo com internet ruim — dados da API continuam vindo da rede).
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}

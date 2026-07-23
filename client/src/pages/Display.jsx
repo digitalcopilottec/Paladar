@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { api, money } from '../api.js';
 import Logo from '../components/Logo.jsx';
 
@@ -9,6 +9,8 @@ import Logo from '../components/Logo.jsx';
 export default function Display() {
   const [d, setD] = useState(null);
   const [marca, setMarca] = useState({});
+  const artRef = useRef(null);
+  const [artRect, setArtRect] = useState(null);
 
   useEffect(() => {
     let vivo = true;
@@ -20,6 +22,30 @@ export default function Display() {
     api('/public/marca').then(setMarca).catch(() => {});
     return () => { vivo = false; clearInterval(t); };
   }, []);
+
+  // Mede a área real da imagem (background-size:contain) e reposiciona a cada
+  // mudança de tamanho, pra funcionar em qualquer celular/tablet/totem.
+  useEffect(() => {
+    if (!marca.fundo || !artRef.current) return;
+    const el = artRef.current;
+    let ro;
+    const img = new Image();
+    img.onload = () => {
+      const ratio = img.naturalWidth / img.naturalHeight;
+      const calc = () => {
+        const cw = el.clientWidth, ch = el.clientHeight;
+        const largo = cw / ch > ratio;
+        const w = largo ? ch * ratio : cw;
+        const h = largo ? ch : cw / ratio;
+        setArtRect({ left: (cw - w) / 2, top: (ch - h) / 2, width: w, height: h });
+      };
+      calc();
+      ro = new ResizeObserver(calc);
+      ro.observe(el);
+    };
+    img.src = marca.fundo;
+    return () => ro?.disconnect();
+  }, [marca.fundo]);
 
   const status = d?.status || 'ocioso';
 
@@ -53,8 +79,14 @@ export default function Display() {
           </div>
         ); })()
       ) : (
-        <div className={'dp-centro dp-inicio' + (marca.fundo ? ' com-fundo' : '')}
-          style={marca.fundo ? { backgroundImage: `url(${marca.fundo})` } : undefined}>
+        <div className={'dp-centro dp-inicio' + (marca.fundo ? ' com-fundo' : '')} ref={artRef}
+          style={marca.fundo ? {
+            backgroundImage: `url(${marca.fundo})`,
+            ...(artRect && {
+              backgroundSize: `${artRect.width}px ${artRect.height}px`,
+              backgroundPosition: `${artRect.left}px ${artRect.top}px`,
+            }),
+          } : undefined}>
           {!marca.fundo && <Logo variant="red" className="dp-logo" />}
           <div className="dp-inicio-fade">
             <div className="dp-bemvindo">Seja bem-vindo</div>

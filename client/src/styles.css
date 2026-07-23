@@ -32,14 +32,27 @@ a { color: inherit; text-decoration: none; }
   background: radial-gradient(1200px 600px at 50% -10%, #3a3f47, #1b1e23);
 }
 /* Com fundo enviado em Marca: imagem inteira, sem esticar — o card (posicionado
-   via JS em Login.jsx) fica em cima da faixa vermelha da direita da arte. */
+   via JS em Login.jsx) fica em cima da faixa vermelha da direita da arte.
+   background-color explícito: sem isso, a sobra ao redor da imagem (contain)
+   mostrava o cinza claro da página em vez de continuar escura. */
 .login-wrap.com-fundo {
+  background-color: #0b0b0d;
   background-size: contain; background-position: center; background-repeat: no-repeat;
 }
 .login-card {
   width: 100%; max-width: 380px; background: var(--panel);
   border-radius: 20px; padding: 34px 28px; box-shadow: 0 20px 60px rgba(0,0,0,.35);
 }
+/* Com foto de fundo: painel escuro translúcido em vez de caixa branca —
+   fica "dentro" da cena em vez de tapar a imagem inteira. */
+.login-card.com-fundo {
+  background: rgba(12,13,16,.72); backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,.12); padding: 26px 22px;
+}
+.login-card.com-fundo .field label { color: rgba(255,255,255,.7); }
+.login-card.com-fundo .input { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18); color: #fff; }
+.login-card.com-fundo .input::placeholder { color: rgba(255,255,255,.4); }
+.login-card.com-fundo .hint { color: rgba(255,255,255,.55); }
 .brand-logo { width: 150px; height: 150px; display: block; margin: 0 auto 22px;
   border-radius: 50%; box-shadow: 0 10px 30px rgba(0,0,0,.14); }
 .brand-name { text-align: center; color: var(--brand); font-size: 30px; font-weight: 800;
@@ -94,6 +107,12 @@ a { color: inherit; text-decoration: none; }
 .page-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; gap: 12px; flex-wrap: wrap; }
 .page-head h1 { margin: 0; font-size: 24px; }
 .page-head .sub { color: var(--muted); font-size: 14px; }
+/* Celular estreito: título em cima, filtros/ações embaixo, cada um ocupando
+   a largura toda — lado a lado fica espremido demais com data/número nativos. */
+@media (max-width: 480px) {
+  .page-head { flex-direction: column; align-items: stretch; }
+  .page-head > * { width: 100%; }
+}
 
 /* ---------- Cards / grid ---------- */
 .grid { display: grid; gap: 16px; }
@@ -117,7 +136,10 @@ a { color: inherit; text-decoration: none; }
 /* ---------- Tables ---------- */
 /* Tabela larga em tela estreita: rola de lado dentro do card em vez de espremer colunas. */
 .card:has(> table) { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; }
+/* min-width em vez de width: tabela com muita coisa editável (preço, seletor)
+   pode crescer além do card e rolar de lado, em vez de espremer as colunas
+   até ficar ilegível — o scroll do .card (acima) é o respiro pra isso. */
+table { min-width: 100%; border-collapse: collapse; }
 th, td { text-align: left; padding: 14px 12px; border-bottom: 1px solid var(--line); font-size: 14px; white-space: nowrap; }
 th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; }
 .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
@@ -144,7 +166,9 @@ th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: upp
 
 /* ---------- PDV ---------- */
 .pdv { display: grid; grid-template-columns: 1fr 380px; gap: 18px; height: calc(100vh - 48px); }
-.pdv-menu { display: flex; flex-direction: column; min-height: 0; }
+/* min-width:0 é obrigatório em item de grid — sem isso, o item nunca encolhe
+   além do conteúdo (abas, comanda) e "vaza" da tela em celular/tablet estreito. */
+.pdv-menu { display: flex; flex-direction: column; min-height: 0; min-width: 0; }
 .cat-tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; }
 .cat-tabs button { white-space: nowrap; padding: 10px 16px; border-radius: 22px; border: 1.5px solid var(--line);
   background: #fff; font-weight: 600; font-size: 14px; min-height: 44px; }
@@ -162,7 +186,7 @@ th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: upp
 .prod .price { color: var(--brand); font-weight: 800; margin-top: auto; }
 
 .cart { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
-  display: flex; flex-direction: column; box-shadow: var(--shadow); min-height: 0; }
+  display: flex; flex-direction: column; box-shadow: var(--shadow); min-height: 0; min-width: 0; }
 .cart-head { padding: 16px; border-bottom: 1px solid var(--line); font-weight: 700; display: flex;
   justify-content: space-between; align-items: center; }
 .cart-items { flex: 1; overflow: auto; padding: 8px 12px; }
@@ -185,6 +209,13 @@ th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: upp
 .modal h3 { margin: 0 0 16px; }
 .row { display: flex; gap: 10px; }
 .row > * { flex: 1; }
+/* Celular estreito: campos lado a lado (datas, CFOP/CSOSN etc.) empilham em
+   vez de espremer — alguns inputs nativos (data, número) não encolhem bem. */
+@media (max-width: 480px) {
+  /* !important porque algumas páginas fixam align-items inline (pensado pro
+     layout lado a lado) — aqui vira coluna, então precisa ficar esticado. */
+  .row { flex-direction: column; align-items: stretch !important; }
+}
 .pay-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 6px 0 16px; }
 .pay-methods button { padding: 14px; border-radius: 10px; border: 1.5px solid var(--line); background: #fff;
   font-weight: 600; min-height: 48px; }
@@ -672,6 +703,14 @@ th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: upp
   padding: 19px 40px; font-weight: 900; font-size: 15px; letter-spacing: .12em;
   text-transform: uppercase; box-shadow: 0 14px 40px rgba(176,30,40,.5); }
 .tt-bar .go:disabled { opacity: .28; box-shadow: none; }
+/* Celular estreito: a barra (mesa/garçom) tinha folga pensada pro totem/tablet
+   e vazava da tela — aperta o respiro sem perder o toque confortável. */
+@media (max-width: 480px) {
+  .tt-bar { gap: 8px; padding: 14px 14px; }
+  .tt-bar .cancel { padding: 12px 14px; font-size: 11px; }
+  .tt-bar .info b { font-size: 20px; }
+  .tt-bar .go { padding: 14px 18px; font-size: 13px; }
+}
 
 /* ---------- Telas de escolha (modo / pagamento) ---------- */
 .tt-step { flex: 1; display: flex; flex-direction: column; align-items: center;
@@ -741,7 +780,7 @@ th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: upp
 /* Monitor de cozinha: fundo escuro, tipos grandes, legível a distância. */
 .kds { position: fixed; inset: 0; background: #15181d; color: #fff; display: flex;
   flex-direction: column; z-index: 60; }
-.kds-head { display: flex; align-items: center; gap: 16px; padding: 14px 22px;
+.kds-head { display: flex; align-items: center; gap: 16px; padding: 14px 22px; flex-wrap: wrap;
   background: #1e232a; border-bottom: 1px solid #2e333c; }
 .kds-head .mark { width: 40px; height: 40px; display: block; flex-shrink: 0; }
 .kds-head .mark-antigo { width: 40px; height: 40px; border-radius: 50%; background: #fff;
@@ -749,12 +788,18 @@ th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: upp
 .kds-head b { font-size: 20px; font-style: italic; }
 .kds-head .tag { background: #2b3038; padding: 7px 14px; border-radius: 20px; font-size: 14px; color: #9aa2ae; }
 .kds-head .right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
-.kds-head .live { display: flex; align-items: center; gap: 8px; color: #9aa2ae; font-size: 13px; }
+.kds-head .live { display: flex; align-items: center; gap: 8px; color: #9aa2ae; font-size: 13px; white-space: nowrap; }
 .kds-head .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--ok);
-  animation: pulse 2s infinite; }
+  animation: pulse 2s infinite; flex-shrink: 0; }
 @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
 .kds-head .exit { background: #2b3038; border: none; color: #fff; padding: 10px 16px;
-  border-radius: 10px; font-weight: 600; }
+  border-radius: 10px; font-weight: 600; white-space: nowrap; }
+/* Celular estreito: a tag e o status "ao vivo" quebram pra uma segunda linha
+   em vez de espremer ou vazar da tela. */
+@media (max-width: 480px) {
+  .kds-head { gap: 10px 12px; padding: 12px 14px; }
+  .kds-head .right { margin-left: 0; width: 100%; justify-content: space-between; }
+}
 
 .kds-board { flex: 1; overflow: auto; padding: 20px; display: grid;
   grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; align-content: start;
