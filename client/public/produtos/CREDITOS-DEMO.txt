@@ -1,0 +1,95 @@
+FOTOS PROVISORIAS (Unsplash - licenca de uso comercial, sem atribuicao obrigatoria).
+NAO sao os pratos do Paladar. Substituir pelas fotos reais antes de abrir ao publico:
+o cliente pede olhando a foto.
+
+demo-bruschetta.jpg
+  autor: Anna Jakutajc-Wojtalik
+  https://unsplash.com/photos/E9k20Miyqr8
+  two pieces of bread on a black plate
+
+demo-bolinho.jpg
+  autor: tommao wang
+  https://unsplash.com/photos/__S2PQuHUjE
+  Two fried croquettes on a white plate
+
+demo-parmegiana.jpg
+  autor: Joanna Stołowicz
+  https://unsplash.com/photos/KAWvBhf7tdU
+  a wooden cutting board topped with sliced tomatoes and french fries
+
+demo-picanha.jpg
+  autor: Pablo Merchán Montes
+  https://unsplash.com/photos/Npm4YjO8ql8
+  a plate of steak, potatoes, and salad on a table
+
+demo-risoto.jpg
+  autor: Patrycja Jadach
+  https://unsplash.com/photos/Nitw0-UMJI0
+  two bowls of shrimp and rice with lemon wedges
+
+demo-moqueca.jpg
+  autor: Maite Paternain
+  https://unsplash.com/photos/_x6bBDr_PvM
+  A table topped with different types of seafood
+
+demo-batata-frita.jpg
+  autor: Slashio Photography
+  https://unsplash.com/photos/BkWowglS_Uk
+  a plate of french fries falling into the air
+
+demo-frango.jpg
+  autor: Slashio Photography
+  https://unsplash.com/photos/AOtQJP6zMvA
+  a pile of fried chicken sitting on top of a plate next to fries
+
+demo-isca-peixe.jpg
+  autor: Karolina Grabowska
+  https://unsplash.com/photos/sEBT1XObmoU
+  a woman is holding a fried chicken sandwich and french fries
+
+demo-pudim.jpg
+  autor: Felippe Lopes
+  https://unsplash.com/photos/TqPdzQ00I0U
+  a small dessert on a white plate on a wooden table
+
+demo-petit-gateau.jpg
+  autor: Frank Flores
+  https://unsplash.com/photos/z4N8izFJVNE
+  a slice of cake on a plate
+
+demo-refrigerante.jpg
+  autor: Thomas Franke
+  https://unsplash.com/photos/MRMVqUaNZSE
+  a close up of a glass of soda
+
+demo-suco.jpg
+  autor: Patrick Fore
+  https://unsplash.com/photos/Q4ivVa_OgVQ
+  a glass of orange juice next to some oranges
+
+demo-agua.jpg
+  autor: George Dagerotip
+  https://unsplash.com/photos/6tmDYAcU4S0
+  a bottle of water on a white background
+
+demo-cerveja.jpg
+  autor: Andrej Lišakov
+  https://unsplash.com/photos/a_Gs7Y9UOk0
+  A green beer bottle with water droplets on it
+
+demo-caipirinha.jpg
+  autor: Patrycja Jadach
+  https://unsplash.com/photos/s8CsvG1lmhY
+  A couple of glasses filled with drinks next to limes
+
+demo-ovo.jpg
+  Unsplash (licenca de uso comercial) — autor nao confirmado
+  fried egg on toast
+
+demo-vinho.jpg
+  Unsplash (licenca de uso comercial) — autor nao confirmado
+  four wine glasses on a wooden barrel
+
+demo-buffet.jpg
+  Unsplash (licenca de uso comercial) — autor nao confirmado
+  buffet self-service spread

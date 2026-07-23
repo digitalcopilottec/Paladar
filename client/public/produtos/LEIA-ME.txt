@@ -1,0 +1,8 @@
+Coloque aqui as fotos dos pratos do Paladar.
+
+- Formato quadrado (1:1) funciona melhor: o totem recorta em circulo.
+- Sugestao: 800x800px, JPG, fundo escuro combina com o totem.
+- Depois cadastre o caminho no sistema: Cardapio -> botao "Foto"
+  Ex.: /produtos/picanha.jpg
+
+Use fotos DOS SEUS pratos. O cliente pede pela foto.
