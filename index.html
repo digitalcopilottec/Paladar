@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RIDE7 - Mobilidade urbana no Rio Grande do Sul</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="site-header">
+        <a class="brand" href="#" aria-label="Ride7 inicio">
+          <img src="./assets/ride7-logo-app.png" alt="" />
+          <span>RIDE7</span>
+        </a>
+
+        <nav class="desktop-nav" aria-label="Navegacao">
+          <a href="#passageiro">Passageiro</a>
+          <a href="#experiencia">Experiencia</a>
+          <a href="#solucao">Solucao</a>
+          <a href="#motorista">Motorista</a>
+          <a href="#admin">Admin</a>
+          <a href="#seguranca">Seguranca</a>
+        </nav>
+
+        <div class="header-actions">
+          <button class="ghost-button" type="button">Entrar</button>
+          <button class="dark-button" type="button">Criar conta</button>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero road-hero" id="passageiro">
+          <img
+            class="hero-bg"
+            src="./assets/ride7-hero-clean.png"
+            alt="Passageira embarcando em um carro Ride7 em uma avenida urbana"
+          />
+          <div class="road-hero-copy">
+            <p class="eyebrow">Mobilidade urbana no Rio Grande do Sul</p>
+            <h1>Ride7</h1>
+            <p class="hero-display">
+              Seu <br class="mobile-only" />caminho.<br />
+              <strong>Sua <br class="mobile-only" />escolha.</strong>
+            </p>
+            <p class="hero-text">
+              Corridas, MotoTaxi e tele entrega com seguranca, negociacao de valor e acompanhamento
+              em tempo real no mapa.
+            </p>
+            <div class="hero-actions">
+              <button class="primary-button" type="button">Pedir corrida</button>
+              <button class="outline-button" type="button">Dirigir com Ride7</button>
+            </div>
+          </div>
+
+          <div class="hero-benefits" aria-label="Diferenciais RIDE7">
+            <article>
+              <span>OK</span>
+              <strong>Seguranca</strong>
+              <small>Motoristas verificados e rota compartilhavel.</small>
+            </article>
+            <article>
+              <span>R$</span>
+              <strong>Negocie valor</strong>
+              <small>Escolha o preco e receba proposta.</small>
+            </article>
+            <article>
+              <span>M</span>
+              <strong>MotoTaxi</strong>
+              <small>Agilidade com piloto cadastrado.</small>
+            </article>
+            <article>
+              <span>24h</span>
+              <strong>Suporte</strong>
+              <small>Atendimento rapido para usuarios.</small>
+            </article>
+          </div>
+
+          <div class="map-status visually-hidden" id="mapStatus">
+            <span class="pulse-dot"></span>
+            <strong>Motoristas proximos</strong>
+            <small>3 veiculos cadastrados online</small>
+          </div>
+        </section>
+
+        <section class="experience-section" id="experiencia">
+          <div class="section-heading center">
+            <p class="eyebrow">Experiencia premium</p>
+            <h2>
+              Do cadastro <br class="mobile-only" />verificado ao destino,
+              <br class="mobile-only" />tudo parece claro
+            </h2>
+            <p>
+              O Ride7 prioriza uma jornada simples para todas as idades: login seguro, GPS,
+              estimativa de valor, acompanhamento de corridas, MotoTaxi, entregas e historico completo.
+            </p>
+          </div>
+
+          <div class="experience-grid">
+            <article
+              class="app-demo-card"
+              aria-label="Passageira entrando em um carro Ride7 com painel de solicitacao ao lado"
+            >
+              <div class="app-demo-copy">
+                <span class="pill">Passageiro</span>
+                <h3>Chegue com seguranca desde o embarque</h3>
+                <p>Motorista identificado, carro confirmado e viagem acompanhada em tempo real.</p>
+              </div>
+              <div class="ride-finder-card" id="requestSheet">
+                <div class="finder-title">
+                  <span>Solicite agora</span>
+                  <strong>Encontre seu RIDE7</strong>
+                </div>
+
+                <div class="input-stack">
+                  <label>
+                    <span class="dot current"></span>
+                    <input value="Av. Ipiranga, Porto Alegre" aria-label="Origem" />
+                  </label>
+                  <label>
+                    <span class="dot target"></span>
+                    <input value="Aeroporto Salgado Filho" aria-label="Destino" />
+                  </label>
+                </div>
+
+                <div class="category-list" id="categoryList"></div>
+
+                <div class="payment-panel">
+                  <div class="payment-row">
+                    <span>Metodo de pagamento</span>
+                    <strong id="selectedPayment">PIX</strong>
+                  </div>
+                  <div class="payment-methods" id="paymentMethods"></div>
+                </div>
+
+                <div class="payment-row fare-row">
+                  <span>Total estimado</span>
+                  <strong id="selectedFare">R$ 38,90</strong>
+                </div>
+
+                <button class="confirm-button" id="requestRideButton" type="button">
+                  Confirmar Ride7
+                </button>
+                <button class="outline-button reset-button" id="resetRideButton" type="button" hidden>
+                  Nova busca
+                </button>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+        <section class="video-section" id="videos">
+          <div class="section-heading center">
+            <p class="eyebrow">RIDE7 em movimento</p>
+            <h2>Veja a experiencia do aplicativo em cenas reais</h2>
+            <p>
+              Os videos ficam em uma area dedicada para apresentar embarque, tele entrega e
+              MotoTaxi sem carregar demais a primeira tela.
+            </p>
+          </div>
+
+          <div class="video-grid">
+            <article class="video-card featured-video">
+              <video
+                src="./assets/ride7-hero-boarding-video.mp4"
+                poster="./assets/ride7-hero-boarding.png"
+                autoplay
+                muted
+                loop
+                playsinline
+                controls
+              ></video>
+              <div>
+                <span class="pill">Embarque</span>
+                <h3>Passageiro entrando no RIDE7</h3>
+                <p>Um recorte premium da experiencia de chegada do motorista e inicio da viagem.</p>
+              </div>
+            </article>
+
+            <article class="video-card compact-video">
+              <video
+                src="./assets/ride7-delivery-video.mp4"
+                poster="./assets/ride7-delivery-real.jpg"
+                autoplay
+                muted
+                loop
+                playsinline
+                controls
+              ></video>
+              <div>
+                <span class="pill">Tele entrega</span>
+                <h3>Entrega de produtos e lanches</h3>
+                <p>Pedido acompanhado em tempo real, com entregador cadastrado e pagamento direto no app.</p>
+              </div>
+            </article>
+
+            <article class="video-card compact-video">
+              <video
+                src="./assets/ride7-mototaxi-video.mp4"
+                autoplay
+                muted
+                loop
+                playsinline
+                controls
+              ></video>
+              <div>
+                <span class="pill">MotoTaxi</span>
+                <h3>Corrida de moto com agilidade</h3>
+                <p>Uma opcao rapida para deslocamentos curtos, com piloto cadastrado e viagem acompanhada.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="feature-strip" id="precos" aria-label="Destaques do Ride7">
+          <article>
+            <span class="feature-icon">R7</span>
+            <h2>Cadastro com OTP</h2>
+            <p>Validacao por SMS, login por e-mail ou telefone e recuperacao de senha.</p>
+          </article>
+          <article>
+            <span class="feature-icon shield">OK</span>
+            <h2>Seguranca reforcada</h2>
+            <p>Rota compartilhavel, botao de emergencia, identificacao do motorista e registro de localizacao.</p>
+          </article>
+          <article>
+            <span class="feature-icon earn">R$</span>
+            <h2>Parceiros selecionados</h2>
+            <p>Documentos, CNH, carro, moto, selfie, residencia e chave PIX passam por validacao.</p>
+          </article>
+        </section>
+
+        <section class="suite-section" id="solucao">
+          <div class="section-heading">
+            <p class="eyebrow">Plataforma Ride7</p>
+            <h2>App de passageiro, Driver parceiro, entregas e painel administrativo</h2>
+            <p>
+              A primeira versao foca em transporte particular, MotoTaxi e tele entrega no Rio Grande do Sul, com arquitetura
+              pronta para PIX, carteira digital, login social, fidelidade e expansao nacional.
+            </p>
+          </div>
+
+          <div class="module-grid" id="moduleGrid"></div>
+        </section>
+
+        <section class="split-section" id="motorista">
+          <div>
+            <p class="eyebrow">Modo motorista</p>
+            <h2>Ganhe com corridas, MotoTaxi e entregas no RS</h2>
+            <p>
+              O parceiro controla status online, aceita ou recusa chamadas, acompanha navegacao
+              integrada e visualiza ganhos diarios, semanais e mensais.
+            </p>
+            <div class="driver-stats">
+              <span><strong>R$ 286</strong> hoje</span>
+              <span><strong>17</strong> corridas</span>
+              <span><strong>92%</strong> aceite</span>
+            </div>
+          </div>
+
+          <div class="driver-showcase">
+            <img
+              src="./assets/ride7-driver-real.png"
+              alt="Motorista usando o aplicativo Ride7 no painel do carro"
+            />
+            <div class="driver-card">
+              <div class="driver-card-header">
+                <div>
+                  <p>Nova chamada</p>
+                  <strong>Centro -> Aeroporto</strong>
+                </div>
+                <span>R$ 31,40</span>
+              </div>
+              <div class="driver-route">
+                <span>1,2 km ate o embarque</span>
+                <span>14 min de viagem</span>
+              </div>
+              <div class="driver-actions">
+                <button class="outline-button" type="button">Recusar</button>
+                <button class="primary-button" type="button">Aceitar</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="admin-section" id="admin">
+          <div class="admin-preview">
+            <div class="admin-topline">
+              <span>Painel Ride7</span>
+              <strong>Ao vivo</strong>
+            </div>
+            <div class="admin-metrics">
+              <article>
+                <span>Corridas ativas</span>
+                <strong>128</strong>
+              </article>
+              <article>
+                <span>Motoristas online</span>
+                <strong>642</strong>
+              </article>
+              <article>
+                <span>Entregas</span>
+                <strong>47</strong>
+              </article>
+            </div>
+            <div class="admin-list">
+              <div><span>Pagamento aprovado</span><strong>R$ 42,80</strong></div>
+              <div><span>Ticket de suporte</span><strong>Prioridade</strong></div>
+              <div><span>Solicitacao por lance</span><strong>3 ofertas</strong></div>
+            </div>
+          </div>
+
+          <div>
+            <p class="eyebrow">Operacao e gestao</p>
+            <h2>Painel para controlar passageiros, motoristas e corridas</h2>
+            <p>
+              Administradores aprovam documentos, acompanham mapa em tempo real, configuram tarifas,
+              gerenciam financeiro, promocoes, cupons, suporte e relatorios.
+            </p>
+            <div class="admin-tags">
+              <span>Reservas</span>
+              <span>Tele entrega</span>
+              <span>MotoTaxi</span>
+              <span>Carteira</span>
+              <span>Cupons</span>
+              <span>Chat</span>
+              <span>Notificacoes</span>
+              <span>Tarifas</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="safety-section" id="seguranca">
+          <div>
+            <p class="eyebrow">Seguranca</p>
+            <h2>Viagem acompanhada do inicio ao fim</h2>
+          </div>
+          <div class="safety-grid">
+            <article>
+              <h3>Rota compartilhavel</h3>
+              <p>Envie o acompanhamento em tempo real para familiares ou contatos de confianca.</p>
+            </article>
+            <article>
+              <h3>Perfil verificado</h3>
+              <p>Foto do motorista, foto do veiculo, placa, modelo, cor e avaliacao antes do embarque.</p>
+            </article>
+            <article>
+              <h3>Ajuda rapida</h3>
+              <p>Botao de emergencia, suporte rapido e registro de localizacao durante a corrida.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="cta-section">
+          <div>
+            <p class="eyebrow">Preparado para crescer</p>
+            <h2>RIDE7 nasce regional e escalavel para todo o Brasil</h2>
+            <p>
+              Flutter, Firebase, Firestore, Google Maps, FCM, Storage e Cloud Functions formam uma
+              base moderna para evoluir com carteira, assinaturas, IA e novas cidades.
+            </p>
+          </div>
+          <div class="cta-actions">
+            <button class="primary-button" type="button">Comecar agora</button>
+            <button class="outline-button" type="button">Ver demo do app</button>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <img src="./assets/ride7-logo-app.png" alt="" />
+        <span>Ride7</span>
+        <p>Mobilidade urbana regional, segura e preparada para escala nacional.</p>
+      </footer>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

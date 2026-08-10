@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RIDE7 Driver</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./driver.css" />
+  </head>
+  <body>
+    <main class="driver-app">
+      <section class="driver-map">
+        <img src="./assets/ride7-phone-map.png" alt="Mapa do motorista RIDE7 Driver" />
+        <div class="google-map-canvas" id="driverGoogleMap" aria-label="Google Maps do motorista"></div>
+        <header class="driver-header">
+          <button class="round-button" type="button" aria-label="Menu">Menu</button>
+          <div class="driver-brand" aria-label="RIDE7 Driver">
+            <img src="./assets/ride7-logo-app.png" alt="" />
+            <strong>DRIVER</strong>
+          </div>
+          <button class="round-button" type="button" aria-label="Ajuda">SOS</button>
+        </header>
+
+        <div class="driver-status" id="driverStatus">
+          <span></span>
+          <strong>Cadastro pendente</strong>
+        </div>
+      </section>
+
+      <section class="driver-sheet" id="driverSheet">
+        <div class="sheet-handle"></div>
+        <div class="loading-state">Carregando RIDE7 Driver...</div>
+      </section>
+    </main>
+
+    <script src="./maps-config.js"></script>
+    <script src="./ride7-maps.js"></script>
+    <script src="./driver.js"></script>
+  </body>
+</html>

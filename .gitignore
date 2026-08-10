@@ -1,0 +1,14 @@
+.DS_Store
+tmp/
+tmp_extract_video.swift
+criar novo projeto
+
+# Local reference images and screenshots kept outside the app build
+Captura de Tela *.png
+1768306c4c6a6852389aec8f4645ba50.jpg
+05e70b051d312ee6d1aa08799697d258.jpg
+
+# Editor and OS noise
+.vscode/
+.idea/
+*.log
