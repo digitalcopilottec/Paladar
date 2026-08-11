@@ -69,56 +69,67 @@ const registeredDrivers = [
 const modules = [
   {
     icon: "OTP",
+    symbol: "ID",
     title: "Cadastro seguro",
     text: "Nome, CPF, e-mail, celular, senha, recuperacao de acesso e validacao por SMS.",
   },
   {
     icon: "GPS",
+    symbol: "MAP",
     title: "Corridas e MotoTaxi",
     text: "Origem automatica, destino editavel, carros e motos proximas, valor, ETA e tempo de viagem.",
   },
   {
     icon: "BOX",
+    symbol: "BOX",
     title: "Tele entrega",
     text: "Fluxo para marmitas, lanches e pequenos produtos com retirada, entrega e rastreio no mapa.",
   },
   {
     icon: "PIX",
+    symbol: "PAY",
     title: "Pagamentos flexiveis",
     text: "PIX, credito, debito, dinheiro e estrutura pronta para carteira digital.",
   },
   {
     icon: "SOS",
+    symbol: "SOS",
     title: "Seguranca ativa",
     text: "Rota compartilhada, botao de emergencia, historico completo e localizacao registrada.",
   },
   {
     icon: "DRV",
+    symbol: "DRV",
     title: "Motorista e entregador",
     text: "Documentos, CNH, selfie, carro, moto, conta bancaria ou chave PIX e ganhos detalhados.",
   },
   {
     icon: "ADM",
+    symbol: "ADM",
     title: "Painel completo",
     text: "Gestao de usuarios, corridas, tarifas, documentos, cupons, financeiro, suporte e relatorios.",
   },
   {
     icon: "CBK",
+    symbol: "R$",
     title: "Cashback configuravel",
     text: "Campanhas por percentual, regiao, patrocinador, periodo, servico e quantidade de usos.",
   },
   {
     icon: "PTS",
+    symbol: "LVL",
     title: "Pontos e rankings",
     text: "Niveis para clientes e parceiros com progresso, metas, conquistas e recompensas.",
   },
   {
     icon: "ADS",
+    symbol: "AD",
     title: "Patrocinadores",
     text: "Banners discretos com impressoes, cliques, cupons, conversoes e cashback patrocinado.",
   },
   {
     icon: "SUB",
+    symbol: "PRO",
     title: "Assinaturas",
     text: "Planos Moto, Carro, Entrega e Clube Premium com beneficios editaveis pelo admin.",
   },
@@ -332,7 +343,7 @@ moduleGrid.innerHTML = modules
   .map(
     (module) => `
       <article class="module-card">
-        <span class="module-icon">${module.icon}</span>
+        <span class="module-icon" data-code="${module.icon}">${module.symbol || module.icon}</span>
         <h3>${module.title}</h3>
         <p>${module.text}</p>
       </article>
