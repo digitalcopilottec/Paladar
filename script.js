@@ -102,6 +102,26 @@ const modules = [
     title: "Painel completo",
     text: "Gestao de usuarios, corridas, tarifas, documentos, cupons, financeiro, suporte e relatorios.",
   },
+  {
+    icon: "CBK",
+    title: "Cashback configuravel",
+    text: "Campanhas por percentual, regiao, patrocinador, periodo, servico e quantidade de usos.",
+  },
+  {
+    icon: "PTS",
+    title: "Pontos e rankings",
+    text: "Niveis para clientes e parceiros com progresso, metas, conquistas e recompensas.",
+  },
+  {
+    icon: "ADS",
+    title: "Patrocinadores",
+    text: "Banners discretos com impressoes, cliques, cupons, conversoes e cashback patrocinado.",
+  },
+  {
+    icon: "SUB",
+    title: "Assinaturas",
+    text: "Planos Moto, Carro, Entrega e Clube Premium com beneficios editaveis pelo admin.",
+  },
 ];
 
 let categoryList = document.querySelector("#categoryList");

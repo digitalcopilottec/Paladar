@@ -1513,6 +1513,259 @@ h3 {
   line-height: 1.6;
 }
 
+.ecosystem-section {
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f5f8f2 100%);
+}
+
+.service-mode-grid,
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.service-mode-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.service-mode-grid article,
+.plan-card,
+.cashback-panel,
+.rewards-panel,
+.sponsor-banner {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 16px 46px rgba(17, 20, 18, 0.08);
+}
+
+.service-mode-grid article {
+  min-height: 250px;
+  padding: 24px;
+}
+
+.mode-icon {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  margin-bottom: 22px;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--brand);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.mode-icon.moto {
+  background: var(--coral);
+}
+
+.mode-icon.box {
+  background: var(--yellow);
+  color: var(--brand);
+}
+
+.service-mode-grid p,
+.plan-card p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.benefits-dashboard {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1fr) minmax(260px, 0.75fr);
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.cashback-panel,
+.rewards-panel,
+.sponsor-banner {
+  min-height: 260px;
+  padding: 24px;
+}
+
+.cashback-panel {
+  background:
+    radial-gradient(circle at 92% 0%, rgba(20, 242, 163, 0.22), transparent 36%),
+    #111412;
+  color: #ffffff;
+}
+
+.cashback-panel > strong {
+  display: block;
+  margin: 18px 0 10px;
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 0.95;
+}
+
+.cashback-panel p {
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.6;
+}
+
+.mini-history {
+  display: grid;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.mini-history span {
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.rewards-panel {
+  background:
+    linear-gradient(145deg, rgba(20, 242, 163, 0.12), rgba(255, 201, 40, 0.08)),
+    #ffffff;
+}
+
+.rewards-panel h3 {
+  margin: 18px 0 16px;
+  font-size: clamp(28px, 3.6vw, 42px);
+  line-height: 1;
+}
+
+.progress-track {
+  height: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #dfe4dc;
+}
+
+.progress-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--green), var(--yellow));
+}
+
+.level-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 18px;
+  font-weight: 900;
+}
+
+.level-row span {
+  color: var(--green);
+}
+
+.sponsor-banner {
+  display: grid;
+  align-content: end;
+  background:
+    linear-gradient(180deg, rgba(17, 20, 18, 0.12), rgba(17, 20, 18, 0.84)),
+    url("./assets/ride7-growth-brazil.png") center / cover;
+  color: #ffffff;
+}
+
+.sponsor-banner > span {
+  width: fit-content;
+  margin-bottom: 14px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--yellow);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.sponsor-banner p {
+  color: rgba(255, 255, 255, 0.76);
+  line-height: 1.55;
+}
+
+.plans-section {
+  background: #080d0e;
+  color: #ffffff;
+}
+
+.plans-section .section-heading p:not(.eyebrow) {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.billing-toggle {
+  display: flex;
+  width: fit-content;
+  margin: 0 auto 24px;
+  padding: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.billing-toggle button {
+  min-height: 40px;
+  min-width: 104px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.62);
+  font-weight: 900;
+}
+
+.billing-toggle button.active {
+  background: var(--green);
+  color: #ffffff;
+}
+
+.plan-card {
+  display: grid;
+  gap: 16px;
+  min-height: 340px;
+  padding: 24px;
+  background:
+    linear-gradient(145deg, rgba(20, 242, 163, 0.08), rgba(255, 201, 40, 0.04)),
+    rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.plan-card.recommended {
+  border-color: rgba(20, 242, 163, 0.78);
+  box-shadow: 0 26px 70px rgba(20, 242, 163, 0.16);
+}
+
+.plan-card.premium {
+  border-color: rgba(255, 201, 40, 0.58);
+}
+
+.plan-type {
+  width: fit-content;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(20, 242, 163, 0.12);
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.plan-card h3 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.plan-card > strong {
+  font-size: 24px;
+}
+
+.plan-card p {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.plan-card button {
+  align-self: end;
+  width: 100%;
+}
+
 .suite-section {
   background: #f7f8f4;
 }
@@ -1929,6 +2182,9 @@ h3 {
   .video-grid,
   .safety-grid,
   .module-grid,
+  .service-mode-grid,
+  .benefits-dashboard,
+  .plan-grid,
   .experience-grid {
     grid-template-columns: 1fr;
   }
@@ -2002,6 +2258,34 @@ h3 {
     max-width: 100%;
     font-size: clamp(42px, 12vw, 48px);
     line-height: 0.92;
+  }
+
+  .ecosystem-section,
+  .plans-section {
+    overflow: hidden;
+  }
+
+  .billing-toggle {
+    width: 100%;
+  }
+
+  .billing-toggle button {
+    min-width: 0;
+    flex: 1;
+    font-size: 12px;
+  }
+
+  .service-mode-grid article,
+  .cashback-panel,
+  .rewards-panel,
+  .sponsor-banner,
+  .plan-card {
+    min-height: auto;
+    padding: 18px;
+  }
+
+  .cashback-panel > strong {
+    font-size: 38px;
   }
 
   .app-demo-card {

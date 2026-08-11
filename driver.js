@@ -255,6 +255,26 @@ function renderDashboard() {
       <span>${appState.online ? "Fique atento as chamadas proximas." : "Fique online para aparecer para passageiros proximos."}</span>
     </div>
 
+    <section class="partner-dashboard" aria-label="Resumo do parceiro">
+      <div class="partner-level">
+        <span>Nivel Ouro</span>
+        <strong>2.850 pontos</strong>
+        <div class="driver-progress"><span style="width: 72%"></span></div>
+        <small>Faltam 650 pontos para Platina</small>
+      </div>
+      <div class="partner-metrics">
+        <article><span>Hoje</span><strong>R$ 284</strong></article>
+        <article><span>Corridas</span><strong>12</strong></article>
+        <article><span>Cashback</span><strong>R$ 18</strong></article>
+        <article><span>Ranking</span><strong>#24</strong></article>
+      </div>
+      <article class="weekly-goal">
+        <span>Meta semanal</span>
+        <strong>36 / 50 corridas</strong>
+        <p>Complete mais 14 corridas e ganhe +500 pontos.</p>
+      </article>
+    </section>
+
     <div class="vehicle-summary">
       <span class="car-symbol"><img src="./assets/ride7-car-side.svg" alt="" /></span>
       <span>
@@ -287,6 +307,18 @@ function renderDashboard() {
     <article class="opportunity-card">
       <strong>Tendencia de ganhos em alta</strong>
       <span>Centro e aeroporto com maior procura nos proximos minutos.</span>
+    </article>
+
+    <article class="subscription-status">
+      <span>Minha Assinatura</span>
+      <strong>Plano Carro ativo</strong>
+      <small>Proxima cobranca em 12/09 - taxa reduzida e prioridade regional.</small>
+    </article>
+
+    <article class="driver-sponsored">
+      <span>Patrocinado</span>
+      <strong>Seguro parceiro com cashback</strong>
+      <small>Ganhe R$ 15 de cashback ao ativar o beneficio este mes.</small>
     </article>
 
     <div class="action-stack">

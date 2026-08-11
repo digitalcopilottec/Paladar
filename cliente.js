@@ -86,6 +86,16 @@ const serviceCatalog = {
 
 const payments = ["PIX", "Credito", "Debito", "Dinheiro"];
 
+const clientBenefits = {
+  name: "Marina",
+  cashbackAvailable: "R$ 48,70",
+  cashbackPending: "R$ 16,20 pendente",
+  points: "3.420",
+  level: "Gold",
+  nextReward: "5.000 pontos -> R$ 25 de cashback",
+  sponsor: "Posto parceiro: abasteca hoje e ganhe 5% de cashback.",
+};
+
 const registeredVehicle = {
   driver: "Rafael Martins",
   motoDriver: "Diego Ferreira",
@@ -232,6 +242,38 @@ function renderPayments() {
     .join("");
 }
 
+function renderClientHomeSummary() {
+  return `
+    <section class="client-home-summary" aria-label="Resumo de beneficios">
+      <div class="hello-row">
+        <span>Ola, ${clientBenefits.name}</span>
+        <strong>Para onde vamos hoje?</strong>
+      </div>
+      <div class="wallet-grid">
+        <article class="wallet-card cashback">
+          <span>Seu Cashback</span>
+          <strong>${clientBenefits.cashbackAvailable}</strong>
+          <small>${clientBenefits.cashbackPending}</small>
+        </article>
+        <article class="wallet-card">
+          <span>Seus Pontos</span>
+          <strong>${clientBenefits.points}</strong>
+          <small>Nivel ${clientBenefits.level}</small>
+        </article>
+      </div>
+      <article class="reward-card">
+        <span>Proxima recompensa</span>
+        <strong>${clientBenefits.nextReward}</strong>
+        <div class="client-progress"><span style="width: 68%"></span></div>
+      </article>
+      <article class="sponsored-card">
+        <span>Patrocinado</span>
+        <strong>${clientBenefits.sponsor}</strong>
+      </article>
+    </section>
+  `;
+}
+
 function renderNegotiationPanel() {
   if (selectedService === "delivery") {
     return "";
@@ -278,6 +320,7 @@ function renderSelection() {
 
   clientSheet.innerHTML = `
     <div class="sheet-handle"></div>
+    ${renderClientHomeSummary()}
     <div class="service-tabs">${renderServiceTabs()}</div>
     <div class="service-visual">
       <img src="${currentServiceImage()}" alt="${currentMode().label} RIDE7" />

@@ -29,6 +29,7 @@ Para testar o fluxo funcional do motorista, abra `driver.html`.
 - Imagens fotorealistas geradas para o hero e seção de motorista.
 - CTA final e rodapé institucional.
 - Especificação do produto em `docs/ride7-product-spec.md`.
+- Plano de expansão para cashback, pontos, assinaturas, patrocinadores e publicidade em `docs/ride7-platform-expansion.md`.
 - Análise do vídeo de referência em `docs/video-uber-flow-analysis.md`.
 - Análise do segundo vídeo de referência em `docs/video-uber-flow-analysis-171447.md`.
 - Análise do vídeo do motorista em `docs/video-driver-flow-analysis-20260806.md`.

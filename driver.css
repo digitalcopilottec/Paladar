@@ -455,6 +455,127 @@ button {
   margin-bottom: 12px;
 }
 
+.partner-dashboard {
+  display: grid;
+  gap: 9px;
+  margin-bottom: 14px;
+}
+
+.partner-level,
+.weekly-goal,
+.subscription-status,
+.driver-sponsored {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f8faf7;
+}
+
+.partner-level {
+  background:
+    linear-gradient(135deg, rgba(13, 143, 104, 0.12), rgba(246, 195, 71, 0.12)),
+    #ffffff;
+}
+
+.partner-level span,
+.weekly-goal span,
+.subscription-status span,
+.driver-sponsored span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.partner-level strong,
+.weekly-goal strong,
+.subscription-status strong,
+.driver-sponsored strong {
+  display: block;
+  margin-top: 7px;
+  font-size: 18px;
+}
+
+.partner-level small,
+.subscription-status small,
+.driver-sponsored small,
+.weekly-goal p {
+  display: block;
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.driver-progress {
+  height: 9px;
+  margin-top: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #dfe4dc;
+}
+
+.driver-progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--green), var(--yellow));
+}
+
+.partner-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.partner-metrics article {
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.partner-metrics span,
+.partner-metrics strong {
+  display: block;
+}
+
+.partner-metrics span {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.partner-metrics strong {
+  margin-top: 7px;
+  font-size: 15px;
+}
+
+.weekly-goal {
+  border-color: rgba(246, 195, 71, 0.38);
+  background: #fffaf0;
+}
+
+.subscription-status {
+  margin-bottom: 10px;
+  border-color: rgba(13, 143, 104, 0.28);
+  background: rgba(13, 143, 104, 0.08);
+}
+
+.driver-sponsored {
+  margin-bottom: 12px;
+  border-color: rgba(246, 195, 71, 0.38);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(246, 195, 71, 0.2), transparent 42%),
+    #fffaf0;
+}
+
+.driver-sponsored span {
+  color: #8a6500;
+}
+
 .stat-card {
   padding: 12px;
   border: 1px solid var(--line);
