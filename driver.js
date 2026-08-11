@@ -22,6 +22,21 @@ const docs = [
   { id: "residence", title: "Comprovante de residencia", detail: "Endereco atualizado" },
 ];
 
+const sponsorAds = [
+  {
+    title: "Digital Copilot Tecnologia",
+    text: "Sistemas, automacoes e suporte para parceiros que querem crescer.",
+    image: "./assets/sponsor-digital-copilot.png",
+    cta: "Ver parceiro",
+  },
+  {
+    title: "Paladar Restaurante",
+    text: "Campanhas de entrega com cashback para clientes Ride7.",
+    image: "./assets/sponsor-paladar.jpeg",
+    cta: "Ver campanha",
+  },
+];
+
 const appState = {
   approved: false,
   online: false,
@@ -166,6 +181,8 @@ function renderRegistration() {
       <span>Preencha os dados obrigatorios e envie documentos para liberar o modo online.</span>
     </div>
 
+    ${renderSponsorCarousel("Parceiros em destaque")}
+
     <div class="form-grid">
       <div class="field">
         <label>Nome completo</label>
@@ -239,6 +256,34 @@ function renderDocuments() {
     .join("");
 }
 
+function renderSponsorCarousel(title = "Campanhas patrocinadas") {
+  return `
+    <section class="sponsor-carousel" aria-label="${title}">
+      <div class="sponsor-carousel-head">
+        <span>Patrocinado</span>
+        <strong>${title}</strong>
+      </div>
+      <div class="sponsor-track">
+        ${sponsorAds
+          .map(
+            (ad) => `
+              <article class="sponsor-slide">
+                <img src="${ad.image}" alt="${ad.title}" />
+                <div>
+                  <span>Publicidade</span>
+                  <strong>${ad.title}</strong>
+                  <p>${ad.text}</p>
+                  <button type="button">${ad.cta}</button>
+                </div>
+              </article>
+            `,
+          )
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
 function renderDashboard() {
   appState.tripActive = false;
   window.dispatchEvent(new CustomEvent("ride7:realtime-mode", { detail: { role: "driver", mode: appState.online ? "roaming" : "roaming" } }));
@@ -254,6 +299,8 @@ function renderDashboard() {
       <h2>${appState.online ? "Pronto para receber corridas" : "Tudo pronto?"}</h2>
       <span>${appState.online ? "Fique atento as chamadas proximas." : "Fique online para aparecer para passageiros proximos."}</span>
     </div>
+
+    ${renderSponsorCarousel("Campanhas para parceiros")}
 
     <section class="partner-dashboard" aria-label="Resumo do parceiro">
       <div class="partner-level">
@@ -313,12 +360,6 @@ function renderDashboard() {
       <span>Minha Assinatura</span>
       <strong>Plano Carro ativo</strong>
       <small>Proxima cobranca em 12/09 - taxa reduzida e prioridade regional.</small>
-    </article>
-
-    <article class="driver-sponsored">
-      <span>Patrocinado</span>
-      <strong>Seguro parceiro com cashback</strong>
-      <small>Ganhe R$ 15 de cashback ao ativar o beneficio este mes.</small>
     </article>
 
     <div class="action-stack">

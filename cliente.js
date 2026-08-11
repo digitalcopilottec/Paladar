@@ -93,8 +93,22 @@ const clientBenefits = {
   points: "3.420",
   level: "Gold",
   nextReward: "5.000 pontos -> R$ 25 de cashback",
-  sponsor: "Posto parceiro: abasteca hoje e ganhe 5% de cashback.",
 };
+
+const sponsorAds = [
+  {
+    title: "Digital Copilot Tecnologia",
+    text: "Automacao e sistemas para empresas parceiras Ride7.",
+    image: "./assets/sponsor-digital-copilot.png",
+    cta: "Conhecer",
+  },
+  {
+    title: "Paladar Restaurante",
+    text: "Peca marmitas e ganhe cashback patrocinado nas entregas.",
+    image: "./assets/sponsor-paladar.jpeg",
+    cta: "Ver oferta",
+  },
+];
 
 const registeredVehicle = {
   driver: "Rafael Martins",
@@ -266,10 +280,35 @@ function renderClientHomeSummary() {
         <strong>${clientBenefits.nextReward}</strong>
         <div class="client-progress"><span style="width: 68%"></span></div>
       </article>
-      <article class="sponsored-card">
+      ${renderSponsorCarousel("Ofertas para voce")}
+    </section>
+  `;
+}
+
+function renderSponsorCarousel(title = "Patrocinado") {
+  return `
+    <section class="sponsor-carousel" aria-label="${title}">
+      <div class="sponsor-carousel-head">
         <span>Patrocinado</span>
-        <strong>${clientBenefits.sponsor}</strong>
-      </article>
+        <strong>${title}</strong>
+      </div>
+      <div class="sponsor-track">
+        ${sponsorAds
+          .map(
+            (ad) => `
+              <article class="sponsor-slide">
+                <img src="${ad.image}" alt="${ad.title}" />
+                <div>
+                  <span>Publicidade</span>
+                  <strong>${ad.title}</strong>
+                  <p>${ad.text}</p>
+                  <button type="button">${ad.cta}</button>
+                </div>
+              </article>
+            `,
+          )
+          .join("")}
+      </div>
     </section>
   `;
 }
