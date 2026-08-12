@@ -38,6 +38,15 @@
           <button type="button" data-auth-mode="cadastro">Cadastre-se</button>
         </div>
 
+        <div class="demo-access" id="demoAccess">
+          <div>
+            <span>Acesso demo</span>
+            <strong id="demoLogin">cliente@ride7.com</strong>
+            <small id="demoPassword">Senha: Ride7@2026</small>
+          </div>
+          <button type="button" id="fillDemo">Preencher</button>
+        </div>
+
         <form class="auth-form" id="authForm">
           <label data-signup-only hidden>
             <span>Nome completo</span>
@@ -61,6 +70,7 @@
           </label>
 
           <button class="primary-button auth-submit" type="submit" id="authSubmit">Entrar no app</button>
+          <p class="auth-error" id="authError" hidden>Confira o login e senha demo para continuar.</p>
         </form>
 
         <div class="auth-help">
