@@ -121,6 +121,92 @@ a {
   gap: 10px;
 }
 
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.language-switcher button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 32px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.language-switcher button.active {
+  background: #ffffff;
+  color: var(--brand);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+}
+
+.flag {
+  position: relative;
+  display: inline-block;
+  width: 22px;
+  height: 15px;
+  overflow: hidden;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px rgba(17, 20, 18, 0.16);
+}
+
+.flag-us {
+  background:
+    linear-gradient(90deg, #244aa5 0 42%, transparent 42%),
+    repeating-linear-gradient(180deg, #c82b3a 0 7.7%, #ffffff 7.7% 15.4%);
+}
+
+.flag-es {
+  background: linear-gradient(180deg, #c60b1e 0 25%, #ffc400 25% 75%, #c60b1e 75%);
+}
+
+.flag-br {
+  background: #169b62;
+}
+
+.flag-br::before {
+  position: absolute;
+  inset: 3px 5px;
+  transform: rotate(45deg);
+  background: #ffdf00;
+  content: "";
+}
+
+.flag-br::after {
+  position: absolute;
+  inset: 4px 7px;
+  border-radius: 999px;
+  background: #002776;
+  content: "";
+}
+
+.flag-pt {
+  background: linear-gradient(90deg, #006600 0 44%, #ff0000 44%);
+}
+
+.flag-pt::after {
+  position: absolute;
+  top: 4px;
+  left: 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #ffcc00;
+  content: "";
+}
+
 .ghost-button,
 .dark-button,
 .primary-button,
@@ -2624,9 +2710,11 @@ h3 {
 
 @media (max-width: 640px) {
   .site-header {
+    position: sticky;
     min-height: 66px;
     gap: 10px;
     padding: 0 14px;
+    justify-content: flex-start;
   }
 
   .brand {
@@ -2634,12 +2722,12 @@ h3 {
   }
 
   .brand img {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
   }
 
   .brand span {
-    font-size: 19px;
+    font-size: 18px;
   }
 
   .header-actions .ghost-button {
@@ -2647,6 +2735,35 @@ h3 {
   }
 
   .header-actions {
+    display: flex;
+    position: fixed;
+    top: 76px;
+    right: auto;
+    left: 14px;
+    z-index: 12;
+  }
+
+  .header-actions .dark-button {
+    display: none;
+  }
+
+  .language-switcher {
+    gap: 3px;
+    padding: 4px;
+    flex-shrink: 0;
+  }
+
+  .language-switcher button {
+    min-height: 30px;
+    padding: 0 4px;
+  }
+
+  .language-switcher .flag {
+    width: 18px;
+    height: 13px;
+  }
+
+  .language-switcher button span:last-child {
     display: none;
   }
 

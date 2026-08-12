@@ -20,7 +20,15 @@
         <header class="client-header">
           <button class="round-button" type="button" aria-label="Menu">Menu</button>
           <img src="./assets/ride7-logo-app.png" alt="RIDE7" />
-          <button class="round-button" type="button" aria-label="Seguranca">SOS</button>
+          <div class="client-header-actions">
+            <div class="language-switcher app-language-switcher" data-language-switcher aria-label="Escolher idioma">
+              <button type="button" data-lang="en" aria-label="English"><span class="flag flag-us"></span><span>EN</span></button>
+              <button type="button" data-lang="es" aria-label="Español"><span class="flag flag-es"></span><span>ES</span></button>
+              <button type="button" data-lang="pt-BR" aria-label="Português Brasil"><span class="flag flag-br"></span><span>BR</span></button>
+              <button type="button" data-lang="pt-PT" aria-label="Português Portugal"><span class="flag flag-pt"></span><span>PT</span></button>
+            </div>
+            <button class="round-button" type="button" aria-label="Seguranca">SOS</button>
+          </div>
         </header>
         <div class="client-status" id="clientStatus">
           <span></span>
@@ -39,6 +47,7 @@
 
     <script src="./maps-config.js"></script>
     <script src="./ride7-maps.js"></script>
+    <script src="./language-switcher.js"></script>
     <script src="./cliente.js"></script>
   </body>
 </html>
