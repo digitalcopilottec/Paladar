@@ -207,6 +207,10 @@ button {
   display: none;
 }
 
+.client-header-actions .app-language-switcher {
+  display: none;
+}
+
 .flag {
   position: relative;
   display: inline-block;
@@ -260,6 +264,50 @@ button {
   border-radius: 999px;
   background: #ffcc00;
   content: "";
+}
+
+.client-language-panel {
+  display: grid;
+  gap: 8px;
+  margin: 10px 0 12px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.client-language-panel > span {
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.client-language-panel > div {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.client-language-panel button {
+  display: grid;
+  min-width: 0;
+  min-height: 58px;
+  place-items: center;
+  gap: 4px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.client-language-panel button.active {
+  border-color: var(--green);
+  background: var(--ink);
+  color: #ffffff;
+  box-shadow: 0 12px 28px rgba(13, 143, 104, 0.18);
 }
 
 .round-button {
