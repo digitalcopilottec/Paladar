@@ -139,10 +139,11 @@ a {
 }
 
 .language-trigger {
-  width: 46px;
-  height: 46px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.1);
+  width: 54px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
   color: #ffffff;
   backdrop-filter: blur(14px);
 }
@@ -183,10 +184,10 @@ a {
 .flag {
   position: relative;
   display: inline-block;
-  width: 22px;
-  height: 15px;
+  width: 26px;
+  height: 18px;
   overflow: hidden;
-  border-radius: 3px;
+  border-radius: 4px;
   box-shadow: inset 0 0 0 1px rgba(17, 20, 18, 0.16);
 }
 
@@ -206,7 +207,7 @@ a {
 
 .flag-br::before {
   position: absolute;
-  inset: 3px 5px;
+  inset: 4px 7px;
   transform: rotate(45deg);
   background: #ffdf00;
   content: "";
@@ -214,7 +215,7 @@ a {
 
 .flag-br::after {
   position: absolute;
-  inset: 4px 7px;
+  inset: 5px 9px;
   border-radius: 999px;
   background: #002776;
   content: "";
@@ -226,10 +227,10 @@ a {
 
 .flag-pt::after {
   position: absolute;
-  top: 4px;
-  left: 7px;
-  width: 7px;
-  height: 7px;
+  top: 5px;
+  left: 8px;
+  width: 8px;
+  height: 8px;
   border-radius: 999px;
   background: #ffcc00;
   content: "";
@@ -2129,7 +2130,7 @@ h3 {
 .app-button-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 9px;
 }
 
 .brand-chip,
@@ -2146,22 +2147,21 @@ h3 {
 
 .brand-chip {
   position: relative;
-  display: grid;
-  min-width: 180px;
-  min-height: 104px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 96px;
+  min-height: 52px;
   overflow: hidden;
-  padding: 16px 18px;
-  align-content: space-between;
-  justify-items: start;
-  border: 1px solid rgba(255, 255, 255, 0.74);
-  border-radius: 14px;
+  padding: 0 12px;
+  border: 1px solid rgba(17, 20, 18, 0.1);
+  border-radius: 8px;
   background: #ffffff;
   color: #111412;
-  text-align: left;
+  text-align: center;
   box-shadow:
-    0 18px 40px rgba(17, 20, 18, 0.13),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.68);
-  backdrop-filter: blur(12px);
+    0 8px 18px rgba(17, 20, 18, 0.07),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.92);
 }
 
 .brand-chip::before {
@@ -2171,53 +2171,42 @@ h3 {
 .brand-chip > span:not(.master-mark, .card-chip, .pix-mark, .elo-orbs) {
   position: relative;
   z-index: 1;
-  font-size: 25px;
+  font-size: 17px;
   line-height: 1;
   letter-spacing: 0;
 }
 
 .card-chip {
-  display: block;
-  width: 40px;
-  height: 28px;
-  border-radius: 7px;
-  background:
-    linear-gradient(90deg, rgba(122, 86, 6, 0.16) 0 1px, transparent 1px 8px) 0 0 / 8px 100%,
-    linear-gradient(135deg, #ffe48a, #c58b22);
+  display: none;
 }
 
 .brand-chip.visa {
-  background:
-    radial-gradient(circle at 88% 14%, rgba(255, 223, 76, 0.75), transparent 22%),
-    linear-gradient(135deg, #2348d4 0%, #1f43c6 62%, #f1d052 100%);
-  color: #ffffff;
+  color: #1a2f8f;
+  font-style: italic;
 }
 
 .brand-chip.master {
-  background:
-    radial-gradient(circle at 70% 28%, rgba(247, 158, 27, 0.48), transparent 24%),
-    linear-gradient(135deg, #2a1720, #3a1e24 56%, #b9531f);
-  color: #ffffff;
+  color: #111412;
 }
 
 .master-mark {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+  position: relative;
+  z-index: 1;
   display: flex;
+  margin-right: 7px;
 }
 
 .master-mark i {
   display: block;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   border-radius: 999px;
   background: #eb001b;
   opacity: 0.92;
 }
 
 .master-mark i + i {
-  margin-left: -10px;
+  margin-left: -7px;
   background: #f79e1b;
 }
 
@@ -2227,12 +2216,12 @@ h3 {
 }
 
 .elo-orbs {
-  position: absolute;
-  top: 13px;
-  right: 10px;
-  display: block;
-  width: 88px;
-  height: 42px;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  width: 28px;
+  height: 15px;
+  margin-left: 6px;
   border-radius: 999px;
   background:
     radial-gradient(circle at 22% 42%, #2886ff 0 18%, transparent 19%),
@@ -2241,22 +2230,22 @@ h3 {
 }
 
 .brand-chip.amex {
-  background: linear-gradient(135deg, #36aaf5, #1472d1);
+  background: #1f8bd8;
   color: #ffffff;
 }
 
 .brand-chip.pix {
-  background: linear-gradient(135deg, #12b978, #34d399);
-  color: #ffffff;
+  color: #10b981;
 }
 
 .pix-mark {
   display: block;
-  width: 38px;
-  height: 38px;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
   transform: rotate(45deg);
-  border-radius: 11px;
-  background: rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  background: linear-gradient(135deg, #30d5a4, #10b981);
 }
 
 .social-button,
@@ -2786,6 +2775,18 @@ h3 {
     display: none;
   }
 
+  .language-trigger {
+    width: 48px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.18);
+  }
+
+  .language-menu {
+    right: 0;
+    min-width: 148px;
+  }
+
   .hero-actions,
   .header-actions {
     align-items: stretch;
@@ -2856,8 +2857,9 @@ h3 {
   }
 
   .brand-chip {
-    flex: 1 1 118px;
-    min-width: 118px;
+    flex: 0 1 calc(50% - 5px);
+    min-width: 0;
+    min-height: 58px;
   }
 
   .social-button,
