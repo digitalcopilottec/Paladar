@@ -1648,8 +1648,8 @@ h3 {
 
 .mode-icon {
   display: block;
-  width: 86px;
-  height: 64px;
+  width: 132px;
+  height: 84px;
   margin-bottom: 22px;
   overflow: hidden;
   border: 1px solid rgba(17, 20, 18, 0.08);
@@ -2033,65 +2033,53 @@ h3 {
 .brand-chip {
   position: relative;
   display: grid;
-  min-width: 132px;
-  min-height: 82px;
+  min-width: 128px;
+  min-height: 76px;
   overflow: hidden;
-  padding: 12px;
-  align-content: end;
-  border: 1px solid rgba(255, 255, 255, 0.42);
+  padding: 12px 14px;
+  place-items: center;
+  border: 1px solid rgba(17, 20, 18, 0.1);
   border-radius: 10px;
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.1)),
-    #111412;
-  color: #ffffff;
-  text-align: left;
-  box-shadow: 0 18px 42px rgba(17, 20, 18, 0.16);
+  background: #ffffff;
+  color: #111412;
+  text-align: center;
+  box-shadow:
+    0 14px 34px rgba(17, 20, 18, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(12px);
 }
 
 .brand-chip::before {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  width: 30px;
-  height: 22px;
-  border-radius: 5px;
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px) 8px 0 / 9px 100%,
-    linear-gradient(135deg, #f6d36a, #b7882c);
-  content: "";
+  content: none;
 }
 
 .brand-chip > span:not(.master-mark) {
   position: relative;
   z-index: 1;
-  font-size: 16px;
+  font-size: 21px;
+  line-height: 1;
   letter-spacing: 0;
 }
 
 .brand-chip.visa {
-  background:
-    radial-gradient(circle at 90% 0%, rgba(255, 255, 255, 0.34), transparent 34%),
-    linear-gradient(135deg, #102c8c, #2349d8 54%, #f5c04a);
+  color: #1a2f8f;
+  font-style: italic;
 }
 
 .brand-chip.master {
-  background:
-    radial-gradient(circle at 84% 0%, rgba(255, 255, 255, 0.28), transparent 34%),
-    linear-gradient(135deg, #1c1f2a, #3a1d1d 62%, #ec6f2e);
+  color: #111412;
 }
 
 .master-mark {
-  position: absolute;
-  top: 12px;
-  right: 12px;
+  position: static;
   display: flex;
+  margin-bottom: 6px;
 }
 
 .master-mark i {
   display: block;
-  width: 26px;
-  height: 26px;
+  width: 30px;
+  height: 30px;
   border-radius: 999px;
   background: #eb001b;
   opacity: 0.92;
@@ -2103,27 +2091,43 @@ h3 {
 }
 
 .brand-chip.elo {
-  background:
-    radial-gradient(circle at 86% 12%, #ffdd47 0 12%, transparent 13%),
-    radial-gradient(circle at 72% 22%, #23d060 0 9%, transparent 10%),
-    radial-gradient(circle at 58% 12%, #2886ff 0 8%, transparent 9%),
-    linear-gradient(135deg, #ffffff, #e8eef6);
   color: #111412;
 }
 
+.brand-chip.elo::after {
+  position: absolute;
+  top: 17px;
+  right: 22px;
+  display: block;
+  width: 42px;
+  height: 20px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 20% 50%, #2886ff 0 17%, transparent 18%),
+    radial-gradient(circle at 50% 50%, #23d060 0 17%, transparent 18%),
+    radial-gradient(circle at 80% 50%, #ffdd47 0 17%, transparent 18%);
+  content: "";
+}
+
 .brand-chip.amex {
-  background: linear-gradient(135deg, #39a7ff, #1266c9);
+  background: #1f8bd8;
+  color: #ffffff;
 }
 
 .brand-chip.pix {
-  background: linear-gradient(135deg, #0aa47a, #31d8a3);
+  color: #10b981;
 }
 
 .brand-chip.pix::before {
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 4px;
   transform: rotate(45deg);
   border-radius: 8px;
-  background: #ffffff;
-  opacity: 0.24;
+  background: linear-gradient(135deg, #30d5a4, #10b981);
+  content: "";
+  opacity: 1;
 }
 
 .social-button,
