@@ -36,6 +36,27 @@ const paymentMethods = [
   { id: "cash", label: "Dinheiro" },
 ];
 
+const planPrices = {
+  monthly: {
+    moto: "R$ 49,90/mês",
+    car: "R$ 79,90/mês",
+    delivery: "R$ 39,90/mês",
+    client: "R$ 19,90/mês",
+  },
+  semester: {
+    moto: "R$ 269,40/semestre",
+    car: "R$ 431,40/semestre",
+    delivery: "R$ 215,40/semestre",
+    client: "R$ 107,40/semestre",
+  },
+  annual: {
+    moto: "R$ 478,80/ano",
+    car: "R$ 766,80/ano",
+    delivery: "R$ 382,80/ano",
+    client: "R$ 190,80/ano",
+  },
+};
+
 const registeredDrivers = [
   {
     name: "Rafael Martins",
@@ -172,6 +193,19 @@ let selectedPayment = document.querySelector("#selectedPayment");
 let selectedCategoryId = "r7";
 let selectedPaymentId = "pix";
 let searchTimer;
+
+function renderPlanPrices(period = "monthly") {
+  const prices = planPrices[period] || planPrices.monthly;
+
+  document.querySelectorAll("[data-billing]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.billing === period);
+  });
+
+  document.querySelectorAll("[data-plan-price]").forEach((price) => {
+    const plan = price.dataset.planPrice;
+    price.textContent = prices[plan];
+  });
+}
 
 function renderCategories(selectedId = "r7") {
   selectedCategoryId = selectedId;
@@ -362,6 +396,7 @@ function bindRideControls() {
 
 renderCategories();
 renderPaymentMethods();
+renderPlanPrices();
 
 moduleGrid.innerHTML = modules
   .map(
@@ -403,4 +438,14 @@ requestSheet.addEventListener("click", (event) => {
   if (event.target.closest("[data-reset-ride]")) {
     resetRideFlow();
   }
+});
+
+document.querySelector(".billing-toggle")?.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-billing]");
+
+  if (!button) {
+    return;
+  }
+
+  renderPlanPrices(button.dataset.billing);
 });
