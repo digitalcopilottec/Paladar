@@ -22,14 +22,21 @@
           <div class="driver-brand" aria-label="RIDE7 Driver">
             <img src="./assets/ride7-logo-app.png" alt="" />
             <strong>DRIVER</strong>
-            <div class="language-switcher app-language-switcher" data-language-switcher aria-label="Escolher idioma">
-              <button type="button" data-lang="en" aria-label="English"><span class="flag flag-us"></span><span>EN</span></button>
-              <button type="button" data-lang="es" aria-label="Español"><span class="flag flag-es"></span><span>ES</span></button>
-              <button type="button" data-lang="pt-BR" aria-label="Português Brasil"><span class="flag flag-br"></span><span>BR</span></button>
-              <button type="button" data-lang="pt-PT" aria-label="Português Portugal"><span class="flag flag-pt"></span><span>PT</span></button>
-            </div>
           </div>
-          <button class="round-button" type="button" aria-label="Ajuda">SOS</button>
+          <div class="driver-header-actions">
+            <div class="language-dropdown app-language-dropdown" data-language-switcher aria-label="Escolher idioma">
+              <button class="language-trigger" type="button" data-language-trigger aria-label="Alterar idioma">
+                <span class="flag flag-br" data-current-flag></span>
+              </button>
+              <div class="language-menu">
+                <button type="button" data-lang="pt-BR" aria-label="Português Brasil"><span class="flag flag-br"></span><span>BR</span></button>
+                <button type="button" data-lang="pt-PT" aria-label="Português Portugal"><span class="flag flag-pt"></span><span>PT</span></button>
+                <button type="button" data-lang="en" aria-label="English"><span class="flag flag-us"></span><span>EN</span></button>
+                <button type="button" data-lang="es" aria-label="Español"><span class="flag flag-es"></span><span>ES</span></button>
+              </div>
+            </div>
+            <button class="round-button" type="button" aria-label="Ajuda">SOS</button>
+          </div>
         </header>
 
         <div class="driver-status" id="driverStatus">

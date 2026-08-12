@@ -32,11 +32,16 @@
         </nav>
 
         <div class="header-actions">
-          <div class="language-switcher" data-language-switcher aria-label="Escolher idioma">
-            <button type="button" data-lang="en" aria-label="English"><span class="flag flag-us"></span><span>EN</span></button>
-            <button type="button" data-lang="es" aria-label="Español"><span class="flag flag-es"></span><span>ES</span></button>
-            <button type="button" data-lang="pt-BR" aria-label="Português Brasil"><span class="flag flag-br"></span><span>BR</span></button>
-            <button type="button" data-lang="pt-PT" aria-label="Português Portugal"><span class="flag flag-pt"></span><span>PT</span></button>
+          <div class="language-dropdown" data-language-switcher aria-label="Escolher idioma">
+            <button class="language-trigger" type="button" data-language-trigger aria-label="Alterar idioma">
+              <span class="flag flag-br" data-current-flag></span>
+            </button>
+            <div class="language-menu">
+              <button type="button" data-lang="pt-BR" aria-label="Português Brasil"><span class="flag flag-br"></span><span>BR</span></button>
+              <button type="button" data-lang="pt-PT" aria-label="Português Portugal"><span class="flag flag-pt"></span><span>PT</span></button>
+              <button type="button" data-lang="en" aria-label="English"><span class="flag flag-us"></span><span>EN</span></button>
+              <button type="button" data-lang="es" aria-label="Español"><span class="flag flag-es"></span><span>ES</span></button>
+            </div>
           </div>
           <button class="ghost-button" type="button">Entrar</button>
           <button class="dark-button" type="button">Criar conta</button>
@@ -64,31 +69,6 @@
             <div class="hero-actions">
               <button class="primary-button" type="button">Pedir corrida</button>
               <button class="outline-button" type="button">Dirigir com Ride7</button>
-            </div>
-            <div class="language-panel" data-language-switcher aria-label="Escolha o idioma da RIDE7">
-              <span>Escolha seu idioma</span>
-              <div class="language-choice-grid">
-                <button type="button" data-lang="pt-BR" aria-label="Português Brasil">
-                  <span class="flag flag-br"></span>
-                  <strong>Português</strong>
-                  <small>Brasil</small>
-                </button>
-                <button type="button" data-lang="pt-PT" aria-label="Português Portugal">
-                  <span class="flag flag-pt"></span>
-                  <strong>Português</strong>
-                  <small>Portugal</small>
-                </button>
-                <button type="button" data-lang="en" aria-label="English United States">
-                  <span class="flag flag-us"></span>
-                  <strong>English</strong>
-                  <small>United States</small>
-                </button>
-                <button type="button" data-lang="es" aria-label="Español España">
-                  <span class="flag flag-es"></span>
-                  <strong>Español</strong>
-                  <small>España</small>
-                </button>
-              </div>
             </div>
           </div>
 
@@ -461,14 +441,15 @@
               <span class="access-kicker">Pagamentos</span>
               <h3>Cadastre seus cartões e escolha como pagar</h3>
               <div class="brand-chip-row">
-                <button class="brand-chip visa" type="button"><span>VISA</span></button>
+                <button class="brand-chip visa" type="button"><span class="card-chip"></span><span>VISA</span></button>
                 <button class="brand-chip master" type="button">
+                  <span class="card-chip"></span>
                   <span class="master-mark"><i></i><i></i></span>
                   <span>Mastercard</span>
                 </button>
-                <button class="brand-chip elo" type="button"><span>elo</span></button>
-                <button class="brand-chip amex" type="button"><span>AMEX</span></button>
-                <button class="brand-chip pix" type="button"><span>PIX</span></button>
+                <button class="brand-chip elo" type="button"><span class="card-chip"></span><span class="elo-orbs"></span><span>elo</span></button>
+                <button class="brand-chip amex" type="button"><span class="card-chip"></span><span>AMEX</span></button>
+                <button class="brand-chip pix" type="button"><span class="pix-mark"></span><span>PIX</span></button>
               </div>
             </article>
 

@@ -144,8 +144,8 @@ function rideCopy(rideState = {}) {
 
 function serviceImage(rideState = {}) {
   const images = {
-    ride: "./assets/ride7-solicite-premium.jpg",
-    mototaxi: "./assets/ride7-mototaxi-premium.jpg",
+    ride: "./assets/ride7-carona-card-premium.png",
+    mototaxi: "./assets/ride7-mototaxi-card-premium.png",
     delivery: "./assets/ride7-delivery-real.jpg",
   };
 

@@ -34,7 +34,7 @@ button {
 
 .driver-app {
   position: relative;
-  width: min(100vw, 520px);
+  width: min(100vw, 390px);
   min-height: 100vh;
   margin: 0 auto;
   overflow: hidden;
@@ -137,23 +137,29 @@ button {
 .driver-header {
   position: absolute;
   top: 16px;
-  right: 16px;
-  left: 16px;
+  right: 12px;
+  left: 12px;
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: center;
   z-index: 3;
+}
+
+.driver-header > .round-button {
+  position: absolute;
+  left: 0;
 }
 
 .driver-brand {
   display: grid;
+  justify-self: center;
   justify-items: center;
-  gap: 6px;
+  gap: 4px;
 }
 
 .driver-brand img {
-  width: 58px;
-  height: 58px;
+  width: 52px;
+  height: 52px;
   border-radius: 12px;
   object-fit: cover;
   box-shadow: 0 12px 30px rgba(17, 20, 18, 0.22);
@@ -164,53 +170,73 @@ button {
   border-radius: 999px;
   background: #111412;
   color: var(--yellow);
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: 0;
   box-shadow: 0 10px 24px rgba(17, 20, 18, 0.16);
 }
 
-.language-switcher {
+.driver-header-actions {
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.language-dropdown {
+  position: relative;
+  z-index: 8;
+}
+
+.language-trigger,
+.language-menu button {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px;
+  justify-content: center;
+  border: 0;
   border-radius: 999px;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.language-trigger {
+  width: 42px;
+  height: 42px;
   background: rgba(255, 255, 255, 0.92);
   box-shadow: 0 10px 26px rgba(17, 20, 18, 0.13);
   backdrop-filter: blur(14px);
 }
 
-.language-switcher button {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  min-height: 28px;
-  padding: 0 6px;
-  border: 0;
-  border-radius: 999px;
+.language-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  display: none;
+  min-width: 148px;
+  gap: 5px;
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 18px 42px rgba(17, 20, 18, 0.16);
+}
+
+.language-dropdown.open .language-menu {
+  display: grid;
+}
+
+.language-menu button {
+  min-height: 34px;
+  justify-content: flex-start;
+  gap: 7px;
+  padding: 0 9px;
   background: transparent;
   color: var(--muted);
-  font-size: 10px;
-  font-weight: 900;
 }
 
-.language-switcher button.active {
+.language-menu button.active {
   background: var(--ink);
   color: #ffffff;
-}
-
-.app-language-switcher {
-  gap: 3px;
-  padding: 4px;
-}
-
-.app-language-switcher button {
-  min-height: 28px;
-  padding: 0 5px;
-}
-
-.app-language-switcher button span:last-child {
-  display: none;
 }
 
 .flag {
@@ -270,14 +296,14 @@ button {
 
 .round-button {
   display: grid;
-  width: 48px;
-  height: 48px;
+  width: 42px;
+  height: 42px;
   place-items: center;
   border: 0;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.92);
   color: var(--ink);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 900;
   box-shadow: 0 10px 26px rgba(17, 20, 18, 0.13);
 }

@@ -210,8 +210,8 @@ function syncNegotiatedAmount() {
 
 function currentServiceImage() {
   const images = {
-    ride: "./assets/ride7-solicite-premium.jpg",
-    mototaxi: "./assets/ride7-mototaxi-premium.jpg",
+    ride: "./assets/ride7-carona-card-premium.png",
+    mototaxi: "./assets/ride7-mototaxi-card-premium.png",
     delivery: "./assets/ride7-delivery-real.jpg",
   };
 
@@ -262,15 +262,6 @@ function renderClientHomeSummary() {
       <div class="hello-row">
         <span>Ola, ${clientBenefits.name}</span>
         <strong>Para onde vamos hoje?</strong>
-      </div>
-      <div class="client-language-panel" data-language-switcher aria-label="Escolher idioma do aplicativo">
-        <span>Idioma do aplicativo</span>
-        <div>
-          <button type="button" data-lang="pt-BR" aria-label="Português Brasil"><span class="flag flag-br"></span><strong>BR</strong></button>
-          <button type="button" data-lang="pt-PT" aria-label="Português Portugal"><span class="flag flag-pt"></span><strong>PT</strong></button>
-          <button type="button" data-lang="en" aria-label="English"><span class="flag flag-us"></span><strong>EN</strong></button>
-          <button type="button" data-lang="es" aria-label="Español"><span class="flag flag-es"></span><strong>ES</strong></button>
-        </div>
       </div>
       <div class="wallet-grid">
         <article class="wallet-card cashback">
