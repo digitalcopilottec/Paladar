@@ -133,6 +133,30 @@ const modules = [
     title: "Assinaturas",
     text: "Planos Moto, Carro, Entrega e Clube Premium com beneficios editaveis pelo admin.",
   },
+  {
+    icon: "SCH",
+    symbol: "AGE",
+    title: "Viagens agendadas",
+    text: "Reserva antecipada para aeroporto, trabalho, eventos, consultas e deslocamentos recorrentes.",
+  },
+  {
+    icon: "B2B",
+    symbol: "EMP",
+    title: "Conta empresa",
+    text: "Relatorios, centro de custo, limites por usuario e recibos para equipes e parceiros locais.",
+  },
+  {
+    icon: "PIN",
+    symbol: "RS",
+    title: "Cidades atendidas",
+    text: "Operacao regional por cidade, bairros com alta demanda e expansao organizada por fases.",
+  },
+  {
+    icon: "OTP",
+    symbol: "COD",
+    title: "Codigo de embarque",
+    text: "Validacao opcional antes da partida para confirmar passageiro, motorista e veiculo correto.",
+  },
 ];
 
 let categoryList = document.querySelector("#categoryList");
