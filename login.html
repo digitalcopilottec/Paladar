@@ -22,6 +22,19 @@
           <span>RIDE7</span>
         </a>
 
+        <div class="auth-language language-dropdown" data-language-switcher aria-label="Escolher idioma">
+          <button class="language-trigger" type="button" data-language-trigger aria-label="Alterar idioma">
+            <span class="flag flag-br" data-current-flag></span>
+            <span class="current-language" data-current-language>Português Brasil</span>
+          </button>
+          <div class="language-menu">
+            <button type="button" data-lang="pt-BR" aria-label="Português Brasil"><span class="flag flag-br"></span><span>BR</span></button>
+            <button type="button" data-lang="pt-PT" aria-label="Português Portugal"><span class="flag flag-pt"></span><span>PT</span></button>
+            <button type="button" data-lang="en" aria-label="English"><span class="flag flag-us"></span><span>EN</span></button>
+            <button type="button" data-lang="es" aria-label="Español"><span class="flag flag-es"></span><span>ES</span></button>
+          </div>
+        </div>
+
         <div class="auth-role" role="tablist" aria-label="Tipo de acesso">
           <a data-role-link="cliente" href="./login.html?tipo=cliente">Passageiro</a>
           <a data-role-link="driver" href="./login.html?tipo=driver">Motorista</a>
@@ -81,6 +94,7 @@
       </section>
     </main>
 
+    <script src="./language-switcher.js"></script>
     <script src="./login.js"></script>
   </body>
 </html>

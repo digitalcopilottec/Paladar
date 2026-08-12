@@ -242,11 +242,27 @@ button {
 .flag {
   position: relative;
   display: inline-block;
-  width: 20px;
-  height: 14px;
+  flex: 0 0 auto;
+  width: 24px;
+  height: 17px;
   overflow: hidden;
-  border-radius: 3px;
-  box-shadow: inset 0 0 0 1px rgba(17, 20, 18, 0.16);
+  border-radius: 6px;
+  box-shadow:
+    inset 0 0 0 1px rgba(17, 20, 18, 0.16),
+    0 5px 13px rgba(17, 20, 18, 0.14);
+}
+
+.flag::before,
+.flag::after {
+  content: "";
+  position: absolute;
+}
+
+.flag::before {
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.34), transparent 42%);
+  mix-blend-mode: screen;
+  pointer-events: none;
 }
 
 .flag-us {
@@ -264,34 +280,36 @@ button {
 }
 
 .flag-br::before {
-  position: absolute;
-  inset: 3px 5px;
+  inset: 4px 7px;
   transform: rotate(45deg);
   background: #ffdf00;
-  content: "";
+  mix-blend-mode: normal;
 }
 
 .flag-br::after {
-  position: absolute;
-  inset: 4px 7px;
+  inset: 5px 9px;
   border-radius: 999px;
   background: #002776;
-  content: "";
 }
 
 .flag-pt {
   background: linear-gradient(90deg, #006600 0 44%, #ff0000 44%);
 }
 
+.flag-pt::before {
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent 42%);
+  mix-blend-mode: screen;
+}
+
 .flag-pt::after {
-  position: absolute;
-  top: 4px;
-  left: 7px;
-  width: 7px;
-  height: 7px;
+  top: 5px;
+  left: 8px;
+  width: 8px;
+  height: 8px;
   border-radius: 999px;
   background: #ffcc00;
-  content: "";
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.24);
 }
 
 .round-button {

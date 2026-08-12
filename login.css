@@ -58,6 +58,24 @@
   object-fit: cover;
 }
 
+.auth-language {
+  margin: -8px 0 18px;
+}
+
+.auth-language .language-trigger {
+  width: 100%;
+  min-width: 0;
+  justify-content: space-between;
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.auth-language .language-menu {
+  right: auto;
+  left: 0;
+  width: 100%;
+}
+
 .auth-role,
 .auth-mode {
   display: grid;
