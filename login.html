@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RIDE7 - Acesso</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./login.css" />
+  </head>
+  <body>
+    <main class="auth-page">
+      <img class="auth-bg" src="./assets/ride7-hero-clean.png" alt="" />
+      <section class="auth-card" aria-label="Acesso RIDE7">
+        <a class="auth-brand" href="./index.html" aria-label="Voltar para inicio">
+          <img src="./assets/ride7-logo-app.png" alt="" />
+          <span>RIDE7</span>
+        </a>
+
+        <div class="auth-role" role="tablist" aria-label="Tipo de acesso">
+          <a data-role-link="cliente" href="./login.html?tipo=cliente">Passageiro</a>
+          <a data-role-link="driver" href="./login.html?tipo=driver">Motorista</a>
+        </div>
+
+        <div class="auth-copy">
+          <p class="eyebrow" id="authKicker">Acesso do passageiro</p>
+          <h1 id="authTitle">Entre para pedir sua carona</h1>
+          <p id="authText">Use e-mail ou celular com senha. Depois você acessa o aplicativo do cliente.</p>
+        </div>
+
+        <div class="auth-mode" role="tablist" aria-label="Entrar ou cadastrar">
+          <button class="active" type="button" data-auth-mode="login">Entrar</button>
+          <button type="button" data-auth-mode="cadastro">Cadastre-se</button>
+        </div>
+
+        <form class="auth-form" id="authForm">
+          <label data-signup-only hidden>
+            <span>Nome completo</span>
+            <input name="name" autocomplete="name" placeholder="Seu nome" />
+          </label>
+          <label>
+            <span>E-mail ou celular</span>
+            <input name="login" autocomplete="username" inputmode="email" placeholder="voce@email.com" required />
+          </label>
+          <label>
+            <span>Senha</span>
+            <input name="password" autocomplete="current-password" type="password" placeholder="Digite sua senha" required />
+          </label>
+          <label data-signup-only hidden>
+            <span>CPF</span>
+            <input name="cpf" inputmode="numeric" placeholder="000.000.000-00" />
+          </label>
+          <label data-driver-only hidden>
+            <span>CNH</span>
+            <input name="cnh" inputmode="numeric" placeholder="Numero da CNH" />
+          </label>
+
+          <button class="primary-button auth-submit" type="submit" id="authSubmit">Entrar no app</button>
+        </form>
+
+        <div class="auth-help">
+          <a href="./login.html?tipo=cliente">Sou passageiro</a>
+          <a href="./login.html?tipo=driver&modo=cadastro">Quero dirigir</a>
+          <a href="./index.html">Voltar</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="./login.js"></script>
+  </body>
+</html>

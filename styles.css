@@ -241,6 +241,9 @@ a {
 .primary-button,
 .outline-button,
 .confirm-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: 44px;
   border-radius: 8px;
   font-weight: 800;
