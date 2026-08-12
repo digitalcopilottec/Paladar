@@ -178,115 +178,6 @@ a {
   background: #090b0a;
 }
 
-.quote-card {
-  align-self: center;
-  grid-column: 2;
-  grid-row: 1;
-  justify-self: end;
-  display: grid;
-  width: min(100%, 420px);
-  gap: 12px;
-  padding: 18px;
-  border: 1px solid rgba(20, 242, 163, 0.32);
-  border-radius: 8px;
-  background:
-    linear-gradient(145deg, rgba(20, 242, 163, 0.08), rgba(255, 201, 40, 0.05)),
-    rgba(7, 13, 14, 0.82);
-  color: #ffffff;
-  box-shadow:
-    0 30px 90px rgba(0, 0, 0, 0.36),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-}
-
-.quote-title {
-  display: grid;
-  gap: 5px;
-}
-
-.quote-title span,
-.quote-negotiation span {
-  color: var(--neon-green);
-  font-size: 12px;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.quote-title strong {
-  font-size: 28px;
-  line-height: 1;
-}
-
-.quote-card label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 48px;
-  padding: 0 12px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.quote-card input {
-  width: 100%;
-  min-width: 0;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  color: #ffffff;
-  font-weight: 800;
-}
-
-.quote-services {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 7px;
-}
-
-.quote-services button {
-  min-height: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.07);
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 12px;
-  font-weight: 900;
-}
-
-.quote-services button.active {
-  border-color: rgba(20, 242, 163, 0.6);
-  background: linear-gradient(135deg, var(--neon-green), #0d8f68);
-  color: #061011;
-}
-
-.quote-estimate {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-
-.quote-estimate span,
-.quote-negotiation {
-  display: grid;
-  gap: 4px;
-  min-height: 64px;
-  padding: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.07);
-}
-
-.quote-estimate small {
-  color: rgba(255, 255, 255, 0.62);
-  font-weight: 800;
-}
-
-.quote-estimate strong,
-.quote-negotiation strong {
-  font-size: 20px;
-}
-
 .hero::after {
   content: "";
   position: absolute;
@@ -2623,15 +2514,6 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .quote-card {
-    grid-column: 1;
-    grid-row: 2;
-    justify-self: stretch;
-    width: 100%;
-    max-width: 100%;
-    margin-top: 18px;
-  }
-
   .app-demo-card {
     grid-template-columns: minmax(0, 1fr) minmax(170px, 0.42fr);
     min-height: auto;
@@ -2687,7 +2569,6 @@ h3 {
   }
 
   .road-hero-copy,
-  .quote-card,
   .hero-benefits {
     justify-self: stretch;
     width: 100%;
@@ -2715,20 +2596,6 @@ h3 {
   .section-heading p,
   .admin-section p {
     font-size: 16px;
-  }
-
-  .quote-services {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .quote-services button {
-    min-width: 0;
-    padding: 0 6px;
-    font-size: 11px;
-  }
-
-  .quote-estimate {
-    grid-template-columns: 1fr;
   }
 
   .ecosystem-section,
