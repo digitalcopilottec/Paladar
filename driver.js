@@ -3,7 +3,9 @@ const driverStatus = document.querySelector("#driverStatus");
 const driverApp = document.querySelector(".driver-app");
 const driverMenu = document.querySelector("[data-app-menu]");
 const driverMenuBackdrop = document.querySelector("[data-menu-close].menu-backdrop");
+const driverAvatar = document.querySelector("[data-driver-avatar]");
 const RIDE_CHANNEL_KEY = "ride7_demo_ride";
+const DRIVER_PHOTO_KEY = "ride7_driver_profile_photo";
 
 const driverProfile = {
   name: "Pablo Bueno Braga",
@@ -111,6 +113,18 @@ function setStatus(state, text) {
   driverStatus.innerHTML = `<span></span><strong>${text}</strong>`;
 }
 
+function applyDriverPhoto(photo = localStorage.getItem(DRIVER_PHOTO_KEY)) {
+  if (!driverAvatar) {
+    return;
+  }
+
+  if (photo) {
+    driverAvatar.innerHTML = `<img src="${photo}" alt="Foto do motorista" />`;
+  } else {
+    driverAvatar.textContent = "PB";
+  }
+}
+
 function openAppMenu() {
   driverMenu.hidden = false;
   driverMenuBackdrop.hidden = false;
@@ -152,6 +166,73 @@ function renderDriverSupportPanel() {
     </div>
     <div class="action-stack">
       <button class="online-button" type="button" data-back-dashboard>Voltar ao painel</button>
+    </div>
+  `;
+}
+
+function renderDriverProfilePanel() {
+  setStatus("", "Perfil do motorista aberto");
+  const photo = localStorage.getItem(DRIVER_PHOTO_KEY);
+  driverSheet.innerHTML = `
+    <div class="sheet-handle"></div>
+    <div class="driver-title">
+      <p>Perfil e dados</p>
+      <h2>Dados do motorista</h2>
+      <span>Atualize foto, dados pessoais, veiculo, moto e chave PIX usados nas chamadas.</span>
+    </div>
+
+    <div class="profile-photo-card">
+      <span class="profile-photo-preview">${photo ? `<img src="${photo}" alt="Foto do motorista" />` : "PB"}</span>
+      <div>
+        <strong>Foto do perfil</strong>
+        <small>Esta foto aparece para o passageiro antes do embarque.</small>
+        <label class="upload-photo-button">
+          Anexar foto
+          <input type="file" accept="image/*" data-profile-photo="driver" hidden />
+        </label>
+      </div>
+    </div>
+
+    <div class="form-grid profile-form">
+      <div class="field">
+        <label>Nome completo</label>
+        <input value="${driverProfile.name}" />
+      </div>
+      <div class="field">
+        <label>CPF</label>
+        <input value="${driverProfile.cpf}" />
+      </div>
+      <div class="field">
+        <label>CNH</label>
+        <input value="${driverProfile.cnh}" />
+      </div>
+      <div class="field">
+        <label>Celular</label>
+        <input value="(51) 98888-2026" />
+      </div>
+      <div class="field">
+        <label>Veiculo</label>
+        <input value="${driverProfile.vehicle}" />
+      </div>
+      <div class="field">
+        <label>Moto para MotoTaxi/entregas</label>
+        <input value="${driverProfile.motorcycle}" />
+      </div>
+      <div class="field">
+        <label>Cor do veiculo</label>
+        <input value="${driverProfile.color}" />
+      </div>
+      <div class="field">
+        <label>Placa</label>
+        <input value="${driverProfile.plate}" />
+      </div>
+      <div class="field">
+        <label>Chave PIX</label>
+        <input value="${driverProfile.pix}" />
+      </div>
+    </div>
+    <div class="action-stack">
+      <button class="online-button" type="button" data-back-dashboard>Salvar dados</button>
     </div>
   `;
 }
@@ -857,6 +938,11 @@ document.addEventListener("click", (event) => {
     renderDashboard();
   }
 
+  if (action === "profile") {
+    appState.approved = true;
+    renderDriverProfilePanel();
+  }
+
   if (action === "online") {
     if (!appState.approved) {
       setStatus("", "Envie documentos antes de ficar online");
@@ -897,13 +983,35 @@ if (driverView === "monetization") {
 } else if (driverView === "dashboard") {
   appState.approved = true;
   renderDashboard();
+} else if (driverView === "profile") {
+  appState.approved = true;
+  renderDriverProfilePanel();
 } else {
   renderRegistration();
 }
 
+applyDriverPhoto();
+
 if (new URLSearchParams(window.location.search).get("menu") === "open") {
   window.setTimeout(openAppMenu, 300);
 }
+
+document.addEventListener("change", (event) => {
+  const input = event.target.closest("[data-profile-photo='driver']");
+  const file = input?.files?.[0];
+
+  if (!file) {
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.addEventListener("load", () => {
+    localStorage.setItem(DRIVER_PHOTO_KEY, reader.result);
+    applyDriverPhoto(reader.result);
+    renderDriverProfilePanel();
+  });
+  reader.readAsDataURL(file);
+});
 
 window.addEventListener("storage", (event) => {
   if (event.key !== RIDE_CHANNEL_KEY || !event.newValue || !appState.online) {

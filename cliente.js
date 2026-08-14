@@ -131,7 +131,9 @@ const clientSheet = document.querySelector("#clientSheet");
 const clientStatus = document.querySelector("#clientStatus");
 const clientMenu = document.querySelector("[data-app-menu]");
 const clientMenuBackdrop = document.querySelector("[data-menu-close].menu-backdrop");
+const clientAvatar = document.querySelector("[data-client-avatar]");
 const RIDE_CHANNEL_KEY = "ride7_demo_ride";
+const CLIENT_PHOTO_KEY = "ride7_client_profile_photo";
 
 let selectedService = "ride";
 let selectedOption = "ride7";
@@ -225,6 +227,18 @@ function setStatus(state, text) {
   clientStatus.innerHTML = `<span></span><strong>${text}</strong>`;
 }
 
+function applyClientPhoto(photo = localStorage.getItem(CLIENT_PHOTO_KEY)) {
+  if (!clientAvatar) {
+    return;
+  }
+
+  if (photo) {
+    clientAvatar.innerHTML = `<img src="${photo}" alt="Foto do passageiro" />`;
+  } else {
+    clientAvatar.textContent = "ML";
+  }
+}
+
 function openAppMenu() {
   clientMenu.hidden = false;
   clientMenuBackdrop.hidden = false;
@@ -262,6 +276,49 @@ function renderWalletPanel() {
       </div>
       <div class="client-payments visible">${renderPayments()}</div>
       <button class="request-button" type="button" data-back-selection>Voltar para corridas</button>
+    </div>
+  `;
+}
+
+function renderClientProfilePanel() {
+  setStatus("", "Perfil do passageiro aberto");
+  const photo = localStorage.getItem(CLIENT_PHOTO_KEY);
+
+  clientSheet.innerHTML = `
+    <div class="sheet-handle"></div>
+    <div class="client-menu-panel">
+      <p class="mini-label">Perfil e dados</p>
+      <h2>Dados do passageiro</h2>
+      <div class="profile-photo-card">
+        <span class="profile-photo-preview">${photo ? `<img src="${photo}" alt="Foto do passageiro" />` : "ML"}</span>
+        <div>
+          <strong>Foto do perfil</strong>
+          <small>Anexe uma foto clara para facilitar a identificacao no embarque.</small>
+          <label class="upload-photo-button">
+            Anexar foto
+            <input type="file" accept="image/*" data-profile-photo="client" hidden />
+          </label>
+        </div>
+      </div>
+      <div class="form-grid profile-form">
+        <div class="field">
+          <label>Nome completo</label>
+          <input value="Marina Lopes" />
+        </div>
+        <div class="field">
+          <label>Celular</label>
+          <input value="(51) 99999-2026" />
+        </div>
+        <div class="field">
+          <label>E-mail</label>
+          <input value="cliente@ride7.com" />
+        </div>
+        <div class="field">
+          <label>CPF</label>
+          <input value="000.000.000-00" />
+        </div>
+      </div>
+      <button class="request-button" type="button" data-back-selection>Salvar dados</button>
     </div>
   `;
 }
@@ -774,6 +831,10 @@ document.addEventListener("click", (event) => {
     renderSelection();
   }
 
+  if (action === "profile") {
+    renderClientProfilePanel();
+  }
+
   if (["ride", "mototaxi", "delivery"].includes(action)) {
     selectedService = action === "ride" ? "ride" : action;
     selectedOption = currentOptions()[0].id;
@@ -854,10 +915,34 @@ window.addEventListener("storage", (event) => {
   }
 });
 
-renderSelection();
+const clientView = new URLSearchParams(window.location.search).get("view");
+
+if (clientView === "profile") {
+  renderClientProfilePanel();
+} else {
+  renderSelection();
+}
+applyClientPhoto();
 
 if (new URLSearchParams(window.location.search).get("menu") === "open") {
   window.setTimeout(openAppMenu, 300);
 }
+
+document.addEventListener("change", (event) => {
+  const input = event.target.closest("[data-profile-photo='client']");
+  const file = input?.files?.[0];
+
+  if (!file) {
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.addEventListener("load", () => {
+    localStorage.setItem(CLIENT_PHOTO_KEY, reader.result);
+    applyClientPhoto(reader.result);
+    renderClientProfilePanel();
+  });
+  reader.readAsDataURL(file);
+});
 
 window.Ride7Maps?.initializeRide7Map("clientGoogleMap", "client");
