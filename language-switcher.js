@@ -397,6 +397,42 @@ const messages = {
   "Proposta enviada": { en: "Offer sent", es: "Propuesta enviada", "pt-PT": "Proposta enviada" },
   "Aguardando resposta": { en: "Waiting for answer", es: "Esperando respuesta", "pt-PT": "A aguardar resposta" },
   "Finalizar demonstracao": { en: "Finish demo", es: "Finalizar demo", "pt-PT": "Finalizar demonstração" },
+  "Monetizacao Ride7": { en: "Ride7 monetization", es: "Monetización Ride7", "pt-PT": "Monetização Ride7" },
+  "Repasses claros para corridas e planos": {
+    en: "Clear splits for rides and plans",
+    es: "Repartos claros para viajes y planes",
+    "pt-PT": "Repasses claros para viagens e planos",
+  },
+  "Configure quanto fica com o motorista, plataforma e coproducao. No Firebase/Admin estes percentuais viram campos editaveis por cidade e servico.": {
+    en: "Set what goes to the driver, platform and co-production. In Firebase/Admin these percentages become editable fields by city and service.",
+    es: "Configura cuánto va al conductor, plataforma y coproducción. En Firebase/Admin estos porcentajes serán campos editables por ciudad y servicio.",
+    "pt-PT": "Configure quanto fica com o motorista, plataforma e coprodução. No Firebase/Admin estes percentuais passam a campos editáveis por cidade e serviço.",
+  },
+  "Repasse liquido da corrida": { en: "Net ride payout", es: "Pago neto del viaje", "pt-PT": "Repasse líquido da viagem" },
+  "Operacao, suporte e tecnologia": { en: "Operations, support and technology", es: "Operación, soporte y tecnología", "pt-PT": "Operação, suporte e tecnologia" },
+  "Comissao comercial/parceiro": { en: "Commercial/partner commission", es: "Comisión comercial/socio", "pt-PT": "Comissão comercial/parceiro" },
+  "Divisao da corrida": { en: "Ride split", es: "División del viaje", "pt-PT": "Divisão da viagem" },
+  "Motorista recebe 75%": { en: "Driver receives 75%", es: "Conductor recibe 75%", "pt-PT": "Motorista recebe 75%" },
+  "Plataforma 18%": { en: "Platform 18%", es: "Plataforma 18%", "pt-PT": "Plataforma 18%" },
+  "Coproducao 7%": { en: "Co-production 7%", es: "Coproducción 7%", "pt-PT": "Coprodução 7%" },
+  Plataforma: { en: "Platform", es: "Plataforma", "pt-PT": "Plataforma" },
+  Coproducao: { en: "Co-production", es: "Coproducción", "pt-PT": "Coprodução" },
+  mensal: { en: "monthly", es: "mensual", "pt-PT": "mensal" },
+  "Planos e assinaturas": { en: "Plans and subscriptions", es: "Planes y suscripciones", "pt-PT": "Planos e assinaturas" },
+  "Como direcionar no sistema real": { en: "How to route in the real system", es: "Cómo dirigirlo en el sistema real", "pt-PT": "Como direcionar no sistema real" },
+  "Ao confirmar pagamento, grave uma transacao com: valor_total, motorista_valor, plataforma_valor, coproducao_valor, tipo_servico, cidade, plano e status de repasse.": {
+    en: "When payment is confirmed, save a transaction with: total_value, driver_value, platform_value, coproduction_value, service_type, city, plan and payout_status.",
+    es: "Al confirmar el pago, guarda una transacción con: valor_total, valor_conductor, valor_plataforma, valor_coproduccion, tipo_servicio, ciudad, plan y estado_de_reparto.",
+    "pt-PT": "Ao confirmar pagamento, grave uma transação com: valor_total, motorista_valor, plataforma_valor, coproducao_valor, tipo_servico, cidade, plano e estado de repasse.",
+  },
+  "Voltar ao painel": { en: "Back to dashboard", es: "Volver al panel", "pt-PT": "Voltar ao painel" },
+  Monetizacao: { en: "Monetization", es: "Monetización", "pt-PT": "Monetização" },
+  "Veja o repasse por corrida e por plano antes de operar.": {
+    en: "See the split per ride and per plan before operating.",
+    es: "Mira el reparto por viaje y por plan antes de operar.",
+    "pt-PT": "Veja o repasse por viagem e por plano antes de operar.",
+  },
+  "Ver comissoes": { en: "See commissions", es: "Ver comisiones", "pt-PT": "Ver comissões" },
 };
 
 const phraseKeys = Object.keys(messages);

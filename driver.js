@@ -37,6 +37,25 @@ const sponsorAds = [
   },
 ];
 
+const monetizationRules = {
+  rides: {
+    driver: 75,
+    platform: 18,
+    coproduction: 7,
+  },
+  plans: {
+    platform: 70,
+    coproduction: 30,
+  },
+};
+
+const planRevenue = [
+  { id: "moto", name: "Plano Moto", price: 49.9, cycle: "mensal" },
+  { id: "car", name: "Plano Carro", price: 79.9, cycle: "mensal" },
+  { id: "delivery", name: "Plano Entrega", price: 39.9, cycle: "mensal" },
+  { id: "premium", name: "Clube Premium", price: 19.9, cycle: "mensal" },
+];
+
 const appState = {
   approved: false,
   online: false,
@@ -158,6 +177,119 @@ function fareToNumber(fare = "R$ 0,00") {
 
 function formatFare(value) {
   return `R$ ${Number(value).toFixed(2).replace(".", ",")}`;
+}
+
+function splitRideFare(fare = "R$ 0,00") {
+  const total = fareToNumber(fare);
+  const driver = total * (monetizationRules.rides.driver / 100);
+  const platform = total * (monetizationRules.rides.platform / 100);
+  const coproduction = total * (monetizationRules.rides.coproduction / 100);
+
+  return { total, driver, platform, coproduction };
+}
+
+function splitPlanValue(value = 0) {
+  const platform = value * (monetizationRules.plans.platform / 100);
+  const coproduction = value * (monetizationRules.plans.coproduction / 100);
+
+  return { total: value, platform, coproduction };
+}
+
+function renderMoneySplit(fare = "R$ 0,00", compact = false) {
+  const split = splitRideFare(fare);
+
+  return `
+    <section class="money-split ${compact ? "compact" : ""}" aria-label="Divisao de valores da corrida">
+      <div class="money-split-head">
+        <span>Divisao da corrida</span>
+        <strong>${formatFare(split.total)}</strong>
+      </div>
+      <div class="split-row driver-share">
+        <span>Motorista recebe ${monetizationRules.rides.driver}%</span>
+        <strong>${formatFare(split.driver)}</strong>
+      </div>
+      <div class="split-row">
+        <span>Plataforma ${monetizationRules.rides.platform}%</span>
+        <strong>${formatFare(split.platform)}</strong>
+      </div>
+      <div class="split-row">
+        <span>Coproducao ${monetizationRules.rides.coproduction}%</span>
+        <strong>${formatFare(split.coproduction)}</strong>
+      </div>
+    </section>
+  `;
+}
+
+function renderMonetizationPanel() {
+  const demoFare = splitRideFare("R$ 38,90");
+
+  driverSheet.innerHTML = `
+    <div class="sheet-handle"></div>
+    <div class="driver-title">
+      <p>Monetizacao Ride7</p>
+      <h2>Repasses claros para corridas e planos</h2>
+      <span>Configure quanto fica com o motorista, plataforma e coproducao. No Firebase/Admin estes percentuais viram campos editaveis por cidade e servico.</span>
+    </div>
+
+    <section class="monetization-summary" aria-label="Resumo de monetizacao">
+      <article>
+        <span>Motorista</span>
+        <strong>${monetizationRules.rides.driver}%</strong>
+        <small>Repasse liquido da corrida</small>
+      </article>
+      <article>
+        <span>Plataforma</span>
+        <strong>${monetizationRules.rides.platform}%</strong>
+        <small>Operacao, suporte e tecnologia</small>
+      </article>
+      <article>
+        <span>Coproducao</span>
+        <strong>${monetizationRules.rides.coproduction}%</strong>
+        <small>Comissao comercial/parceiro</small>
+      </article>
+    </section>
+
+    ${renderMoneySplit("R$ 38,90")}
+
+    <section class="plan-split-panel" aria-label="Divisao dos planos">
+      <div class="money-split-head">
+        <span>Planos e assinaturas</span>
+        <strong>${monetizationRules.plans.platform}% / ${monetizationRules.plans.coproduction}%</strong>
+      </div>
+      ${planRevenue
+        .map((plan) => {
+          const split = splitPlanValue(plan.price);
+          return `
+            <article class="plan-split-row">
+              <span>
+                <strong>${plan.name}</strong>
+                <small>${formatFare(split.total)} ${plan.cycle}</small>
+              </span>
+              <span>
+                <small>Plataforma</small>
+                <strong>${formatFare(split.platform)}</strong>
+              </span>
+              <span>
+                <small>Coproducao</small>
+                <strong>${formatFare(split.coproduction)}</strong>
+              </span>
+            </article>
+          `;
+        })
+        .join("")}
+    </section>
+
+    <article class="monetization-note">
+      <strong>Como direcionar no sistema real</strong>
+      <span>Ao confirmar pagamento, grave uma transacao com: valor_total, motorista_valor, plataforma_valor, coproducao_valor, tipo_servico, cidade, plano e status de repasse.</span>
+    </article>
+
+    <div class="action-stack">
+      <button class="online-button" type="button" data-back-dashboard>Voltar ao painel</button>
+    </div>
+  `;
+
+  return demoFare;
 }
 
 function proposalOptions(rideState = {}) {
@@ -362,6 +494,13 @@ function renderDashboard() {
       <small>Proxima cobranca em 12/09 - taxa reduzida e prioridade regional.</small>
     </article>
 
+    <article class="monetization-preview">
+      <span>Monetizacao</span>
+      <strong>${monetizationRules.rides.driver}% motorista / ${monetizationRules.rides.platform}% plataforma / ${monetizationRules.rides.coproduction}% coproducao</strong>
+      <small>Veja o repasse por corrida e por plano antes de operar.</small>
+      <button class="secondary-button" type="button" data-open-monetization>Ver comissoes</button>
+    </article>
+
     <div class="action-stack">
       <button class="${appState.online ? "danger-button" : "online-button"}" type="button" data-toggle-online>
         ${appState.online ? "Ficar offline" : "Ficar online"}
@@ -443,6 +582,7 @@ function renderIncomingRide(rideState = getRideState()) {
         ${productLine}
       </div>
       ${negotiationBlock}
+      ${renderMoneySplit(rideState?.fare || "R$ 31,40", true)}
       <div class="request-actions">
         <button class="secondary-button" type="button" data-decline-ride>Recusar</button>
         <button class="online-button" type="button" data-accept-ride>${isNegotiation ? "Aceitar valor sugerido" : copy.accept}</button>
@@ -502,6 +642,7 @@ function renderActiveTrip(rideState = getRideState()) {
           <strong>${rideState?.fare || "R$ 31,40"}</strong>
         </article>
       </div>
+      ${renderMoneySplit(rideState?.fare || "R$ 31,40", true)}
       <p>${copy.activeHint}</p>
       <button class="online-button" type="button" data-finish-trip>${copy.finish}</button>
     </div>
@@ -539,6 +680,7 @@ function renderAcceptedWaitingPickup(rideState = getRideState()) {
           <strong>${rideState?.fare || "R$ 31,40"}</strong>
         </article>
       </div>
+      ${renderMoneySplit(rideState?.fare || "R$ 31,40", true)}
       <p>Assim que o cliente confirmar, a navegacao muda para ${copy.destination.toLowerCase()}.</p>
       <button class="secondary-button" type="button" data-decline-ride>Cancelar corrida</button>
     </div>
@@ -572,6 +714,16 @@ driverSheet.addEventListener("click", (event) => {
     return;
   }
 
+  if (event.target.closest("[data-open-monetization]")) {
+    renderMonetizationPanel();
+    return;
+  }
+
+  if (event.target.closest("[data-back-dashboard]")) {
+    renderDashboard();
+    return;
+  }
+
   if (event.target.closest("[data-decline-ride]")) {
     if (appState.currentRideId) {
       publishRideState({ id: appState.currentRideId, status: "declined" });
@@ -591,6 +743,8 @@ driverSheet.addEventListener("click", (event) => {
         vehicle: rideState.serviceType === "ride" ? driverProfile.vehicle : driverProfile.motorcycle,
         color: driverProfile.color,
         plate: rideState.serviceType === "ride" ? driverProfile.plate : driverProfile.motoPlate,
+        monetization: splitRideFare(rideState.fare),
+        commissionRules: monetizationRules.rides,
       };
       publishRideState(acceptedPayload);
       renderAcceptedWaitingPickup(acceptedPayload);
@@ -612,6 +766,8 @@ driverSheet.addEventListener("click", (event) => {
         vehicle: rideState.serviceType === "ride" ? driverProfile.vehicle : driverProfile.motorcycle,
         color: driverProfile.color,
         plate: rideState.serviceType === "ride" ? driverProfile.plate : driverProfile.motoPlate,
+        monetization: splitRideFare(offerButton.dataset.sendOffer),
+        commissionRules: monetizationRules.rides,
       };
       publishRideState(offerPayload);
       renderWaitingOfferAnswer(offerPayload);
@@ -625,7 +781,17 @@ driverSheet.addEventListener("click", (event) => {
   }
 });
 
-renderRegistration();
+const driverView = new URLSearchParams(window.location.search).get("view");
+
+if (driverView === "monetization") {
+  appState.approved = true;
+  renderMonetizationPanel();
+} else if (driverView === "dashboard") {
+  appState.approved = true;
+  renderDashboard();
+} else {
+  renderRegistration();
+}
 
 window.addEventListener("storage", (event) => {
   if (event.key !== RIDE_CHANNEL_KEY || !event.newValue || !appState.online) {
