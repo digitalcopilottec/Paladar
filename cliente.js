@@ -129,6 +129,8 @@ const registeredVehicle = {
 const clientApp = document.querySelector(".client-app");
 const clientSheet = document.querySelector("#clientSheet");
 const clientStatus = document.querySelector("#clientStatus");
+const clientMenu = document.querySelector("[data-app-menu]");
+const clientMenuBackdrop = document.querySelector("[data-menu-close].menu-backdrop");
 const RIDE_CHANNEL_KEY = "ride7_demo_ride";
 
 let selectedService = "ride";
@@ -221,6 +223,73 @@ function currentServiceImage() {
 function setStatus(state, text) {
   clientStatus.className = `client-status ${state}`;
   clientStatus.innerHTML = `<span></span><strong>${text}</strong>`;
+}
+
+function openAppMenu() {
+  clientMenu.hidden = false;
+  clientMenuBackdrop.hidden = false;
+  clientMenu.setAttribute("aria-hidden", "false");
+  window.requestAnimationFrame(() => clientApp.classList.add("menu-open"));
+}
+
+function closeAppMenu() {
+  clientApp.classList.remove("menu-open");
+  clientMenu.setAttribute("aria-hidden", "true");
+  window.setTimeout(() => {
+    clientMenu.hidden = true;
+    clientMenuBackdrop.hidden = true;
+  }, 180);
+}
+
+function renderWalletPanel() {
+  setStatus("", "Carteira Ride7 aberta");
+  clientSheet.innerHTML = `
+    <div class="sheet-handle"></div>
+    <div class="client-menu-panel">
+      <p class="mini-label">Carteira e cashback</p>
+      <h2>Seu saldo Ride7</h2>
+      <div class="wallet-grid">
+        <article class="wallet-card cashback">
+          <span>Cashback disponivel</span>
+          <strong>${clientBenefits.cashbackAvailable}</strong>
+          <small>${clientBenefits.cashbackPending}</small>
+        </article>
+        <article class="wallet-card">
+          <span>Pontos Ride7</span>
+          <strong>${clientBenefits.points}</strong>
+          <small>Nivel ${clientBenefits.level}</small>
+        </article>
+      </div>
+      <div class="client-payments visible">${renderPayments()}</div>
+      <button class="request-button" type="button" data-back-selection>Voltar para corridas</button>
+    </div>
+  `;
+}
+
+function renderSupportPanel() {
+  setStatus("found", "Suporte e seguranca disponiveis");
+  clientSheet.innerHTML = `
+    <div class="sheet-handle"></div>
+    <div class="client-menu-panel">
+      <p class="mini-label">Ajuda Ride7</p>
+      <h2>Suporte e seguranca</h2>
+      <div class="support-list">
+        <article>
+          <strong>SOS</strong>
+          <span>Acione emergencia durante uma corrida ou entrega.</span>
+        </article>
+        <article>
+          <strong>Compartilhar viagem</strong>
+          <span>Envie a rota em tempo real para familiares.</span>
+        </article>
+        <article>
+          <strong>WhatsApp Ride7</strong>
+          <span>Canal preparado para atendimento regional.</span>
+        </article>
+      </div>
+      <button class="request-button" type="button" data-back-selection>Voltar para o app</button>
+    </div>
+  `;
 }
 
 function renderServiceTabs() {
@@ -682,6 +751,54 @@ clientSheet.addEventListener("click", (event) => {
   }
 });
 
+document.addEventListener("click", (event) => {
+  if (event.target.closest("[data-menu-trigger]")) {
+    openAppMenu();
+    return;
+  }
+
+  if (event.target.closest("[data-menu-close]")) {
+    closeAppMenu();
+    return;
+  }
+
+  const menuAction = event.target.closest("[data-menu-action]");
+  if (!menuAction) {
+    return;
+  }
+
+  const action = menuAction.dataset.menuAction;
+  closeAppMenu();
+
+  if (action === "home") {
+    renderSelection();
+  }
+
+  if (["ride", "mototaxi", "delivery"].includes(action)) {
+    selectedService = action === "ride" ? "ride" : action;
+    selectedOption = currentOptions()[0].id;
+    negotiateEnabled = false;
+    syncNegotiatedAmount();
+    renderSelection();
+  }
+
+  if (action === "wallet") {
+    renderWalletPanel();
+  }
+
+  if (action === "support") {
+    renderSupportPanel();
+  }
+
+  if (action === "landing") {
+    window.location.href = "./index.html";
+  }
+
+  if (action === "logout") {
+    window.location.href = "./login.html?tipo=cliente";
+  }
+});
+
 clientSheet.addEventListener("input", (event) => {
   if (event.target.matches("[data-negotiate-range]")) {
     negotiatedAmount = Number(event.target.value);
@@ -738,5 +855,9 @@ window.addEventListener("storage", (event) => {
 });
 
 renderSelection();
+
+if (new URLSearchParams(window.location.search).get("menu") === "open") {
+  window.setTimeout(openAppMenu, 300);
+}
 
 window.Ride7Maps?.initializeRide7Map("clientGoogleMap", "client");

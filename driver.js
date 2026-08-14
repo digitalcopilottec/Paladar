@@ -1,5 +1,8 @@
 const driverSheet = document.querySelector("#driverSheet");
 const driverStatus = document.querySelector("#driverStatus");
+const driverApp = document.querySelector(".driver-app");
+const driverMenu = document.querySelector("[data-app-menu]");
+const driverMenuBackdrop = document.querySelector("[data-menu-close].menu-backdrop");
 const RIDE_CHANNEL_KEY = "ride7_demo_ride";
 
 const driverProfile = {
@@ -106,6 +109,51 @@ window.addEventListener("ride7:map-fallback", (event) => {
 function setStatus(state, text) {
   driverStatus.className = `driver-status ${state}`;
   driverStatus.innerHTML = `<span></span><strong>${text}</strong>`;
+}
+
+function openAppMenu() {
+  driverMenu.hidden = false;
+  driverMenuBackdrop.hidden = false;
+  driverMenu.setAttribute("aria-hidden", "false");
+  window.requestAnimationFrame(() => driverApp.classList.add("menu-open"));
+}
+
+function closeAppMenu() {
+  driverApp.classList.remove("menu-open");
+  driverMenu.setAttribute("aria-hidden", "true");
+  window.setTimeout(() => {
+    driverMenu.hidden = true;
+    driverMenuBackdrop.hidden = true;
+  }, 180);
+}
+
+function renderDriverSupportPanel() {
+  setStatus("", "Suporte Driver aberto");
+  driverSheet.innerHTML = `
+    <div class="sheet-handle"></div>
+    <div class="driver-title">
+      <p>Ajuda Ride7 Driver</p>
+      <h2>Suporte para operar com seguranca</h2>
+      <span>Use esta aba para acessar ajuda em corrida, repasses, documentos e atendimento regional.</span>
+    </div>
+    <div class="support-list">
+      <article>
+        <strong>Corrida em andamento</strong>
+        <span>Suporte acompanha rota, passageiro, valor e status da chamada.</span>
+      </article>
+      <article>
+        <strong>Repasses e comissoes</strong>
+        <span>Confira a aba Monetizacao antes de aceitar chamadas.</span>
+      </article>
+      <article>
+        <strong>Documentos</strong>
+        <span>Atualize CNH, veiculo, moto, selfie e chave PIX.</span>
+      </article>
+    </div>
+    <div class="action-stack">
+      <button class="online-button" type="button" data-back-dashboard>Voltar ao painel</button>
+    </div>
+  `;
 }
 
 function rideCopy(rideState = {}) {
@@ -781,6 +829,66 @@ driverSheet.addEventListener("click", (event) => {
   }
 });
 
+document.addEventListener("click", (event) => {
+  if (event.target.closest("[data-menu-trigger]")) {
+    openAppMenu();
+    return;
+  }
+
+  if (event.target.closest("[data-menu-close]")) {
+    closeAppMenu();
+    return;
+  }
+
+  const menuAction = event.target.closest("[data-menu-action]");
+  if (!menuAction) {
+    return;
+  }
+
+  const action = menuAction.dataset.menuAction;
+  closeAppMenu();
+
+  if (action === "dashboard") {
+    if (!appState.approved) {
+      setStatus("", "Finalize o cadastro para liberar o painel");
+      renderRegistration();
+      return;
+    }
+    renderDashboard();
+  }
+
+  if (action === "online") {
+    if (!appState.approved) {
+      setStatus("", "Envie documentos antes de ficar online");
+      renderRegistration();
+      return;
+    }
+    appState.online = !appState.online;
+    renderDashboard();
+  }
+
+  if (action === "monetization") {
+    appState.approved = true;
+    renderMonetizationPanel();
+  }
+
+  if (action === "documents") {
+    renderRegistration();
+  }
+
+  if (action === "support") {
+    renderDriverSupportPanel();
+  }
+
+  if (action === "landing") {
+    window.location.href = "./index.html";
+  }
+
+  if (action === "logout") {
+    window.location.href = "./login.html?tipo=driver";
+  }
+});
+
 const driverView = new URLSearchParams(window.location.search).get("view");
 
 if (driverView === "monetization") {
@@ -791,6 +899,10 @@ if (driverView === "monetization") {
   renderDashboard();
 } else {
   renderRegistration();
+}
+
+if (new URLSearchParams(window.location.search).get("menu") === "open") {
+  window.setTimeout(openAppMenu, 300);
 }
 
 window.addEventListener("storage", (event) => {

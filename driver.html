@@ -18,7 +18,7 @@
         <img src="./assets/ride7-phone-map.png" alt="Mapa do motorista RIDE7 Driver" />
         <div class="google-map-canvas" id="driverGoogleMap" aria-label="Google Maps do motorista"></div>
         <header class="driver-header">
-          <button class="round-button" type="button" aria-label="Menu">Menu</button>
+          <button class="round-button" type="button" aria-label="Menu" data-menu-trigger>Menu</button>
           <div class="driver-brand" aria-label="RIDE7 Driver">
             <img src="./assets/ride7-logo-app.png" alt="" />
             <strong>DRIVER</strong>
@@ -49,6 +49,33 @@
         <div class="sheet-handle"></div>
         <div class="loading-state">Carregando RIDE7 Driver...</div>
       </section>
+
+      <div class="menu-backdrop" data-menu-close hidden></div>
+      <aside class="app-menu" data-app-menu aria-hidden="true" hidden>
+        <div class="app-menu-head">
+          <span>
+            <img src="./assets/ride7-logo-app.png" alt="" />
+            <strong>RIDE7 DRIVER</strong>
+          </span>
+          <button type="button" data-menu-close aria-label="Fechar menu">Fechar</button>
+        </div>
+        <div class="menu-profile">
+          <span>Motorista parceiro</span>
+          <strong>Pablo Bueno Braga</strong>
+          <small>Toyota Corolla - R7D4A21</small>
+        </div>
+        <nav class="menu-list" aria-label="Menu do motorista">
+          <button type="button" data-menu-action="dashboard">Painel</button>
+          <button type="button" data-menu-action="online">Ficar online/offline</button>
+          <button type="button" data-menu-action="monetization">Monetizacao</button>
+          <button type="button" data-menu-action="documents">Conta e documentos</button>
+          <button type="button" data-menu-action="support">Suporte Driver</button>
+        </nav>
+        <div class="menu-footer">
+          <button type="button" data-menu-action="landing">Pagina inicial</button>
+          <button type="button" data-menu-action="logout">Sair</button>
+        </div>
+      </aside>
     </main>
 
     <script src="./maps-config.js"></script>

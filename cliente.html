@@ -18,7 +18,7 @@
         <img src="./assets/ride7-phone-map.png" alt="Mapa com origem, destino e veiculos proximos" />
         <div class="google-map-canvas" id="clientGoogleMap" aria-label="Google Maps do cliente"></div>
         <header class="client-header">
-          <button class="round-button" type="button" aria-label="Menu">Menu</button>
+          <button class="round-button" type="button" aria-label="Menu" data-menu-trigger>Menu</button>
           <img src="./assets/ride7-logo-app.png" alt="RIDE7" />
           <div class="client-header-actions">
             <div class="language-dropdown app-language-dropdown" data-language-switcher aria-label="Escolher idioma">
@@ -48,6 +48,34 @@
         <div class="sheet-handle"></div>
         <div class="loading-state">Carregando RIDE7...</div>
       </section>
+
+      <div class="menu-backdrop" data-menu-close hidden></div>
+      <aside class="app-menu" data-app-menu aria-hidden="true" hidden>
+        <div class="app-menu-head">
+          <span>
+            <img src="./assets/ride7-logo-app.png" alt="" />
+            <strong>RIDE7</strong>
+          </span>
+          <button type="button" data-menu-close aria-label="Fechar menu">Fechar</button>
+        </div>
+        <div class="menu-profile">
+          <span>Passageira</span>
+          <strong>Marina Lopes</strong>
+          <small>Gold - 3.420 pontos</small>
+        </div>
+        <nav class="menu-list" aria-label="Menu do cliente">
+          <button type="button" data-menu-action="home">Inicio</button>
+          <button type="button" data-menu-action="ride">Pedir carona</button>
+          <button type="button" data-menu-action="mototaxi">MotoTaxi</button>
+          <button type="button" data-menu-action="delivery">Tele entrega</button>
+          <button type="button" data-menu-action="wallet">Carteira e cashback</button>
+          <button type="button" data-menu-action="support">Suporte e seguranca</button>
+        </nav>
+        <div class="menu-footer">
+          <button type="button" data-menu-action="landing">Pagina inicial</button>
+          <button type="button" data-menu-action="logout">Sair</button>
+        </div>
+      </aside>
     </main>
 
     <script src="./maps-config.js"></script>
