@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RIDE7 - Instagram Ads</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --green: #18f2a3;
+        --deep: #061011;
+        --yellow: #ffd929;
+        --red: #ff6f5e;
+        --white: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1080px;
+        overflow: hidden;
+        background: #050807;
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      .ad {
+        position: relative;
+        display: none;
+        width: 1080px;
+        height: 1080px;
+        overflow: hidden;
+        isolation: isolate;
+        color: var(--white);
+        background: #050807;
+      }
+
+      body[data-slide="1"] .slide-1,
+      body[data-slide="2"] .slide-2,
+      body[data-slide="3"] .slide-3,
+      body[data-slide="4"] .slide-4,
+      body[data-slide="5"] .slide-5 {
+        display: block;
+      }
+
+      .bg {
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: saturate(1.04) contrast(1.08) brightness(0.82);
+      }
+
+      .shade {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          linear-gradient(90deg, rgba(5, 8, 7, 0.94), rgba(5, 8, 7, 0.2) 58%, rgba(5, 8, 7, 0.76)),
+          linear-gradient(0deg, rgba(5, 8, 7, 0.94), transparent 48%, rgba(5, 8, 7, 0.42));
+      }
+
+      .topbar {
+        position: absolute;
+        top: 58px;
+        right: 64px;
+        left: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .brand img {
+        width: 86px;
+        height: 86px;
+        border-radius: 18px;
+        object-fit: cover;
+        box-shadow: 0 18px 46px rgba(0, 0, 0, 0.42);
+      }
+
+      .brand strong {
+        font-size: 42px;
+        font-weight: 900;
+        letter-spacing: -1px;
+      }
+
+      .pill {
+        display: inline-flex;
+        width: fit-content;
+        align-items: center;
+        min-height: 44px;
+        border: 1px solid rgba(24, 242, 163, 0.44);
+        border-radius: 999px;
+        background: rgba(24, 242, 163, 0.12);
+        color: var(--green);
+        padding: 0 22px;
+        font-size: 19px;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .copy {
+        position: absolute;
+        right: 64px;
+        bottom: 86px;
+        left: 64px;
+        display: grid;
+        gap: 28px;
+      }
+
+      h1,
+      h2 {
+        max-width: 830px;
+        margin: 0;
+        font-size: 104px;
+        line-height: 0.9;
+        font-weight: 900;
+        letter-spacing: -4px;
+      }
+
+      h2 {
+        font-size: 86px;
+      }
+
+      h1 span,
+      h2 span {
+        color: var(--green);
+      }
+
+      p {
+        max-width: 660px;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.86);
+        font-size: 34px;
+        line-height: 1.22;
+        font-weight: 700;
+      }
+
+      .cta {
+        display: flex;
+        width: fit-content;
+        align-items: center;
+        gap: 16px;
+        min-height: 70px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, var(--green), var(--yellow));
+        color: #04100e;
+        padding: 0 34px;
+        font-size: 27px;
+        font-weight: 900;
+        box-shadow: 0 22px 56px rgba(24, 242, 163, 0.28);
+      }
+
+      .services {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 12px;
+      }
+
+      .service-card {
+        min-height: 184px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 22px;
+        backdrop-filter: blur(18px);
+      }
+
+      .service-card strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 29px;
+        font-weight: 900;
+      }
+
+      .service-card span {
+        display: block;
+        color: rgba(255, 255, 255, 0.74);
+        font-size: 21px;
+        line-height: 1.25;
+        font-weight: 700;
+      }
+
+      .phone {
+        position: absolute;
+        right: 54px;
+        bottom: 110px;
+        width: 380px;
+        border-radius: 52px;
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.44);
+      }
+
+      .price-card {
+        display: grid;
+        width: 530px;
+        gap: 16px;
+        border: 1px solid rgba(24, 242, 163, 0.34);
+        border-radius: 22px;
+        background: rgba(8, 17, 15, 0.82);
+        padding: 26px;
+        backdrop-filter: blur(18px);
+      }
+
+      .price-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        min-height: 62px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 0 18px;
+        font-size: 22px;
+        font-weight: 900;
+      }
+
+      .price-row.highlight {
+        background: linear-gradient(135deg, rgba(24, 242, 163, 0.28), rgba(255, 217, 41, 0.26));
+        color: #ffffff;
+      }
+
+      .badge-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .badge-row span {
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+        padding: 12px 17px;
+        font-size: 19px;
+        font-weight: 900;
+      }
+
+      .download-row {
+        display: flex;
+        gap: 16px;
+      }
+
+      .store {
+        display: grid;
+        min-width: 220px;
+        min-height: 78px;
+        align-content: center;
+        border-radius: 16px;
+        background: #ffffff;
+        color: #061011;
+        padding: 0 22px;
+      }
+
+      .store small,
+      .store strong {
+        display: block;
+      }
+
+      .store small {
+        font-size: 17px;
+        font-weight: 800;
+      }
+
+      .store strong {
+        font-size: 25px;
+        font-weight: 900;
+      }
+
+      .foot {
+        position: absolute;
+        right: 64px;
+        bottom: 42px;
+        left: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 20px;
+        font-weight: 800;
+      }
+    </style>
+  </head>
+  <body>
+    <article class="ad slide-1">
+      <img class="bg" src="../../assets/ride7-hero-clean.png" alt="" />
+      <div class="shade"></div>
+      <div class="topbar">
+        <div class="brand">
+          <img src="../../assets/ride7-logo-app.png" alt="" />
+          <strong>RIDE7</strong>
+        </div>
+        <span class="pill">Rio Grande do Sul</span>
+      </div>
+      <div class="copy">
+        <h1>Sua corrida. <span>Sua escolha.</span></h1>
+        <p>Carro, MotoTaxi e tele entrega com segurança, preço claro e acompanhamento em tempo real.</p>
+        <div class="cta">Peça pelo app RIDE7</div>
+      </div>
+      <div class="foot">
+        <span>@ride7.app</span>
+        <span>Mobilidade urbana premium</span>
+      </div>
+    </article>
+
+    <article class="ad slide-2">
+      <img class="bg" src="../../assets/ride7-road-hero.jpg" alt="" />
+      <div class="shade"></div>
+      <div class="topbar">
+        <div class="brand">
+          <img src="../../assets/ride7-logo-app.png" alt="" />
+          <strong>RIDE7</strong>
+        </div>
+        <span class="pill">Tudo em um app</span>
+      </div>
+      <div class="copy">
+        <h2>Escolha como <span>chegar.</span></h2>
+        <div class="services">
+          <div class="service-card">
+            <strong>Carro</strong>
+            <span>Corridas com motorista verificado.</span>
+          </div>
+          <div class="service-card">
+            <strong>MotoTaxi</strong>
+            <span>Agilidade para trechos curtos.</span>
+          </div>
+          <div class="service-card">
+            <strong>Entrega</strong>
+            <span>Marmitas, lanches e produtos.</span>
+          </div>
+        </div>
+      </div>
+      <div class="foot">
+        <span>RIDE7</span>
+        <span>Carona, moto e tele entrega</span>
+      </div>
+    </article>
+
+    <article class="ad slide-3">
+      <img class="bg" src="../../assets/ride7-carona-card-premium.png" alt="" />
+      <div class="shade"></div>
+      <div class="topbar">
+        <div class="brand">
+          <img src="../../assets/ride7-logo-app.png" alt="" />
+          <strong>RIDE7</strong>
+        </div>
+        <span class="pill">Negocie</span>
+      </div>
+      <div class="copy">
+        <h2>Você pode <span>negociar o valor.</span></h2>
+        <p>O app sugere uma base. Você ajusta, o motorista responde e a corrida fica clara para os dois lados.</p>
+        <div class="price-card">
+          <div class="price-row"><span>Base sugerida</span><strong>R$ 39</strong></div>
+          <div class="price-row highlight"><span>Sua proposta</span><strong>R$ 36</strong></div>
+          <div class="price-row"><span>Motorista</span><strong>Aceitar ou propor</strong></div>
+        </div>
+      </div>
+      <div class="foot">
+        <span>RIDE7</span>
+        <span>Preço transparente antes de confirmar</span>
+      </div>
+    </article>
+
+    <article class="ad slide-4">
+      <img class="bg" src="../../assets/ride7-passenger-boarding.png" alt="" />
+      <div class="shade"></div>
+      <div class="topbar">
+        <div class="brand">
+          <img src="../../assets/ride7-logo-app.png" alt="" />
+          <strong>RIDE7</strong>
+        </div>
+        <span class="pill">Segurança</span>
+      </div>
+      <div class="copy">
+        <h2>Embarque com <span>mais confiança.</span></h2>
+        <p>Motorista, veículo, placa, rota e pagamento ficam visíveis antes e durante a viagem.</p>
+        <div class="badge-row">
+          <span>Foto do motorista</span>
+          <span>Placa confirmada</span>
+          <span>Rota compartilhável</span>
+          <span>SOS no app</span>
+        </div>
+      </div>
+      <div class="foot">
+        <span>RIDE7</span>
+        <span>Segurança do início ao fim</span>
+      </div>
+    </article>
+
+    <article class="ad slide-5">
+      <img class="bg" src="../../assets/ride7-app-screen-premium.png" alt="" />
+      <div class="shade"></div>
+      <div class="topbar">
+        <div class="brand">
+          <img src="../../assets/ride7-logo-app.png" alt="" />
+          <strong>RIDE7</strong>
+        </div>
+        <span class="pill">Em breve</span>
+      </div>
+      <div class="copy">
+        <h2>Cadastre-se para <span>usar primeiro.</span></h2>
+        <p>Passageiros, motoristas e entregadores: a RIDE7 nasce regional e preparada para crescer.</p>
+        <div class="download-row">
+          <div class="store">
+            <small>Em breve no</small>
+            <strong>Google Play</strong>
+          </div>
+          <div class="store">
+            <small>Em breve na</small>
+            <strong>App Store</strong>
+          </div>
+        </div>
+      </div>
+      <div class="foot">
+        <span>@ride7.app</span>
+        <span>Mobilidade feita para a sua cidade</span>
+      </div>
+    </article>
+
+    <script>
+      const slide = new URLSearchParams(window.location.search).get("slide") || "1";
+      document.body.dataset.slide = slide;
+    </script>
+  </body>
+</html>
