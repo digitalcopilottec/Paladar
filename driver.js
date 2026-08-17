@@ -61,18 +61,6 @@ const planRevenue = [
   { id: "premium", name: "Clube Premium", price: 19.9, cycle: "mensal" },
 ];
 
-const driverClover7 = {
-  walletId: "CLV7-PABLO-DR7",
-  balance: 2380,
-  pending: 180,
-  referral: "DRIVER-PABLO-CLV7",
-  rewards: [
-    { title: "Meta semanal", amount: "+500 CLV7", status: "A liberar com 50 corridas" },
-    { title: "Corrida aeroporto", amount: "+35 CLV7", status: "Confirmado" },
-    { title: "Indicacao de motorista", amount: "+250 CLV7", status: "Em analise antifraude" },
-  ],
-};
-
 const appState = {
   approved: false,
   online: false,
@@ -431,78 +419,6 @@ function renderMonetizationPanel() {
   `;
 
   return demoFare;
-}
-
-function renderDriverClover7Panel() {
-  setStatus("online", "Clover7 Driver aberta");
-  driverSheet.innerHTML = `
-    <div class="sheet-handle"></div>
-    <section class="driver-clover-panel" aria-label="Clover7 Driver">
-      <div class="driver-clover-hero">
-        <img src="./assets/clover7-logo.svg" alt="Clover7" />
-        <span>
-          <p>Clover7 Driver</p>
-          <h2>Recompensas CLV7</h2>
-          <small>INOVACAO - SEGURANCA - VALOR - LIBERDADE - COMUNIDADE</small>
-        </span>
-      </div>
-
-      <article class="driver-clover-balance">
-        <span>Saldo total</span>
-        <strong>${driverClover7.balance.toLocaleString("pt-BR", { minimumFractionDigits: 2 })} CLV7</strong>
-        <small>Conversao em reais somente quando houver taxa valida configurada pelo backend.</small>
-      </article>
-
-      <div class="driver-clover-actions">
-        <button type="button">Receber</button>
-        <button type="button">Historico</button>
-        <button type="button">Beneficios</button>
-        <button type="button">Configurar</button>
-      </div>
-
-      <section class="driver-clover-grid">
-        <article>
-          <span>Pendente</span>
-          <strong>${driverClover7.pending} CLV7</strong>
-          <small>Libera apos regras de campanha.</small>
-        </article>
-        <article>
-          <span>Indicacao</span>
-          <strong>${driverClover7.referral}</strong>
-          <small>Protecao contra autoindicacao e contas duplicadas.</small>
-        </article>
-      </section>
-
-      <section class="driver-clover-rewards">
-        <div class="money-split-head">
-          <span>Historico de recompensas</span>
-          <strong>Auditavel</strong>
-        </div>
-        ${driverClover7.rewards
-          .map(
-            (reward) => `
-              <article>
-                <span>
-                  <strong>${reward.title}</strong>
-                  <small>${reward.status}</small>
-                </span>
-                <strong>${reward.amount}</strong>
-              </article>
-            `,
-          )
-          .join("")}
-      </section>
-
-      <article class="monetization-note">
-        <strong>Importante</strong>
-        <span>CLV7 e apresentado como utility token interno preparado para futuras integracoes. Nao e promessa de investimento, valorizacao ou retorno financeiro.</span>
-      </article>
-
-      <div class="action-stack">
-        <button class="online-button" type="button" data-back-dashboard>Voltar ao painel</button>
-      </div>
-    </section>
-  `;
 }
 
 function proposalOptions(rideState = {}) {
@@ -1042,11 +958,6 @@ document.addEventListener("click", (event) => {
     renderMonetizationPanel();
   }
 
-  if (action === "clover7") {
-    appState.approved = true;
-    renderDriverClover7Panel();
-  }
-
   if (action === "documents") {
     renderRegistration();
   }
@@ -1069,9 +980,6 @@ const driverView = new URLSearchParams(window.location.search).get("view");
 if (driverView === "monetization") {
   appState.approved = true;
   renderMonetizationPanel();
-} else if (driverView === "clover7") {
-  appState.approved = true;
-  renderDriverClover7Panel();
 } else if (driverView === "dashboard") {
   appState.approved = true;
   renderDashboard();
