@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clover7 CLV7</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./clover7.css" />
+  </head>
+  <body>
+    <main class="clover-app">
+      <header class="clover-topbar">
+        <a href="./index.html" aria-label="Voltar para RIDE7">RIDE7</a>
+        <strong>CLOVER7</strong>
+        <button type="button" data-screen="settings">PIN</button>
+      </header>
+
+      <section class="clover-hero">
+        <img src="./assets/clover7-logo.svg" alt="Clover7" />
+        <span>CLV7</span>
+        <h1>O futuro e nosso. O movimento e agora.</h1>
+        <p>Carteira digital separada do app RIDE7, preparada para recompensas, pagamentos internos e futuras integracoes com parceiros autorizados.</p>
+      </section>
+
+      <section class="balance-card" aria-label="Saldo Clover7">
+        <span>Saldo total</span>
+        <strong data-balance>4.750,00 CLV7</strong>
+        <small>Equivalente em reais aparece somente quando uma taxa valida estiver configurada.</small>
+      </section>
+
+      <nav class="action-grid" aria-label="Acoes Clover7">
+        <button type="button" data-screen="send">Enviar</button>
+        <button type="button" data-screen="receive">Receber</button>
+        <button type="button" data-screen="buy">Comprar</button>
+        <button type="button" data-screen="scan">Escanear</button>
+      </nav>
+
+      <section class="dynamic-panel" id="cloverPanel" aria-live="polite"></section>
+
+      <section class="info-grid" aria-label="Resumo Clover7">
+        <article>
+          <span>Carteira</span>
+          <strong>CLV7-MARINA-7A92</strong>
+          <small>ID unico da carteira.</small>
+        </article>
+        <article>
+          <span>Recompensas</span>
+          <strong>+325 CLV7</strong>
+          <small>Corridas, indicacoes e campanhas.</small>
+        </article>
+        <article>
+          <span>Seguranca</span>
+          <strong>PIN + biometria</strong>
+          <small>Preparado para operacoes sensiveis.</small>
+        </article>
+        <article>
+          <span>Indicacao</span>
+          <strong>RIDE7-MARINA-CLV7</strong>
+          <small>Fluxo com antifraude.</small>
+        </article>
+      </section>
+
+      <section class="history-section">
+        <div class="section-head">
+          <span>Historico</span>
+          <strong>Auditavel</strong>
+        </div>
+        <div id="historyList"></div>
+      </section>
+
+      <section class="compliance-note">
+        <strong>Compliance-ready</strong>
+        <p>CLV7 nao e apresentado como investimento, nao promete valorizacao e nao simula Pix ou blockchain real. Compra, conversao e integracoes dependem de validacao juridica e parceiro autorizado.</p>
+      </section>
+    </main>
+    <script src="./clover7.js"></script>
+  </body>
+</html>

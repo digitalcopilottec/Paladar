@@ -1,0 +1,320 @@
+:root {
+  --bg: #050705;
+  --panel: #0b120d;
+  --panel-soft: #111a13;
+  --line: rgba(216, 168, 61, 0.32);
+  --green: #25e28a;
+  --green-deep: #0e9e60;
+  --gold: #d8a83d;
+  --text: #ffffff;
+  --muted: rgba(255, 255, 255, 0.68);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at 10% -10%, rgba(37, 226, 138, 0.26), transparent 34%),
+    radial-gradient(circle at 96% 18%, rgba(216, 168, 61, 0.16), transparent 30%),
+    var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  overflow-x: hidden;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.clover-app {
+  position: fixed;
+  inset: 0 auto auto 0;
+  width: 100%;
+  max-width: 430px;
+  height: 100vh;
+  margin: 0;
+  padding: 18px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.clover-topbar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.clover-topbar a,
+.clover-topbar button {
+  display: grid;
+  min-width: 0;
+  min-height: 42px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  padding: 0 14px;
+  font-size: 12px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.clover-topbar strong {
+  justify-self: center;
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.clover-hero,
+.balance-card,
+.dynamic-panel,
+.info-grid article,
+.history-row,
+.compliance-note {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.clover-hero {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  background:
+    linear-gradient(135deg, rgba(37, 226, 138, 0.16), rgba(216, 168, 61, 0.08)),
+    var(--panel);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.36);
+}
+
+.clover-hero img {
+  width: 92px;
+  height: 92px;
+  border-radius: 22px;
+}
+
+.clover-hero span {
+  width: fit-content;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(37, 226, 138, 0.14);
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.clover-hero h1 {
+  margin: 0;
+  font-size: 38px;
+  line-height: 0.96;
+}
+
+.clover-hero p,
+.compliance-note p {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.balance-card {
+  margin-top: 12px;
+  padding: 18px;
+  background:
+    linear-gradient(135deg, rgba(216, 168, 61, 0.2), transparent 46%),
+    #07110a;
+}
+
+.balance-card span,
+.balance-card small,
+.info-grid span,
+.info-grid small,
+.history-row small,
+.section-head span,
+.dynamic-panel label {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.balance-card strong {
+  display: block;
+  margin: 8px 0;
+  font-size: 36px;
+  line-height: 1;
+}
+
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+  margin: 12px 0;
+}
+
+.action-grid button,
+.dynamic-panel button {
+  min-height: 52px;
+  border: 1px solid rgba(37, 226, 138, 0.38);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(37, 226, 138, 0.2), rgba(216, 168, 61, 0.1)),
+    #102016;
+  color: var(--text);
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.dynamic-panel {
+  display: grid;
+  gap: 12px;
+  min-height: 140px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.dynamic-panel h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.dynamic-panel p {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 800;
+  line-height: 1.42;
+}
+
+.dynamic-panel input {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  padding: 0 12px;
+  font-weight: 900;
+}
+
+.qr-box {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  width: 128px;
+  height: 128px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.qr-box span {
+  border-radius: 2px;
+  background: #edf2ee;
+}
+
+.qr-box span.dark {
+  background: #07110a;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+  margin: 12px 0;
+}
+
+.info-grid article {
+  min-height: 132px;
+  padding: 13px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.info-grid strong {
+  display: block;
+  margin: 8px 0;
+  overflow-wrap: anywhere;
+  font-size: 18px;
+  line-height: 1.08;
+}
+
+.history-section {
+  display: grid;
+  gap: 9px;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-head strong {
+  color: var(--gold);
+}
+
+.history-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+  margin-top: 8px;
+  padding: 13px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.history-row > strong {
+  color: var(--green);
+  font-size: 15px;
+}
+
+.compliance-note {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 14px;
+  background: rgba(216, 168, 61, 0.1);
+}
+
+.compliance-note strong {
+  color: var(--gold);
+}
+
+@media (max-width: 360px) {
+  .clover-app {
+    padding: 14px;
+  }
+
+  .clover-hero h1 {
+    font-size: 32px;
+  }
+
+  .balance-card strong {
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 431px) {
+  .clover-app {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
