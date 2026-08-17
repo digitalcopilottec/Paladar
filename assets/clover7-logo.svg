@@ -1,0 +1,25 @@
+<svg width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Clover7 CLV7</title>
+  <desc id="desc">Trevo de quatro folhas integrado ao numero 7 para a carteira Clover7.</desc>
+  <rect width="220" height="220" rx="48" fill="#070907"/>
+  <path d="M44 166C62 133 81 104 105 76H62L72 44H168L158 74C132 101 111 131 93 166H44Z" fill="url(#gold)"/>
+  <path d="M116 57C116 40 127 28 142 28C159 28 170 41 170 57C170 73 155 82 138 91C125 80 116 71 116 57Z" fill="url(#clover)"/>
+  <path d="M170 94C187 94 199 105 199 120C199 137 186 148 170 148C154 148 145 133 136 116C147 103 156 94 170 94Z" fill="url(#clover)"/>
+  <path d="M109 149C109 166 98 178 83 178C66 178 55 165 55 149C55 133 70 124 87 115C100 126 109 135 109 149Z" fill="url(#clover)"/>
+  <path d="M55 112C38 112 26 101 26 86C26 69 39 58 55 58C71 58 80 73 89 90C78 103 69 112 55 112Z" fill="url(#clover)"/>
+  <circle cx="112" cy="103" r="17" fill="#07110A" stroke="url(#gold)" stroke-width="5"/>
+  <path d="M112 120C110 135 109 150 111 164" stroke="url(#gold)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M31 172C57 194 123 204 178 165" stroke="#25E28A" stroke-opacity=".42" stroke-width="4" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="clover" x1="34" y1="33" x2="189" y2="169" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#35F39A"/>
+      <stop offset=".52" stop-color="#0E9E60"/>
+      <stop offset="1" stop-color="#075C39"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="64" y1="37" x2="166" y2="169" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE394"/>
+      <stop offset=".45" stop-color="#D8A83D"/>
+      <stop offset="1" stop-color="#815B12"/>
+    </linearGradient>
+  </defs>
+</svg>

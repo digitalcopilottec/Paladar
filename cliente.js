@@ -84,7 +84,7 @@ const serviceCatalog = {
   ],
 };
 
-const payments = ["PIX", "Credito", "Debito", "Dinheiro"];
+const payments = ["PIX", "Credito", "Debito", "Dinheiro", "Clover7"];
 
 const clientBenefits = {
   name: "Marina",
@@ -93,6 +93,35 @@ const clientBenefits = {
   points: "3.420",
   level: "Gold",
   nextReward: "5.000 pontos -> R$ 25 de cashback",
+};
+
+const clover7Wallet = {
+  id: "CLV7-MARINA-7A92",
+  balance: 4750,
+  conversionRate: null,
+  rewards: 325,
+  referral: "RIDE7-MARINA-CLV7",
+  security: "PIN + biometria preparada",
+  transactions: [
+    {
+      type: "Recompensa",
+      title: "Bonus por corrida",
+      amount: "+25 CLV7",
+      meta: "Hoje, 14:32 - TX-CLV7-2049 - Confirmado",
+    },
+    {
+      type: "Cashback",
+      title: "Entrega Paladar",
+      amount: "+40 CLV7",
+      meta: "Ontem, 20:11 - TX-CLV7-2038 - Confirmado",
+    },
+    {
+      type: "Pagamento",
+      title: "Corrida Ride7",
+      amount: "-120 CLV7",
+      meta: "12 ago, 09:05 - TX-CLV7-1981 - Confirmado",
+    },
+  ],
 };
 
 const sponsorAds = [
@@ -280,6 +309,162 @@ function renderWalletPanel() {
   `;
 }
 
+function clover7FiatText() {
+  if (!clover7Wallet.conversionRate) {
+    return "Conversao em reais aparece quando uma taxa valida estiver configurada pelo sistema.";
+  }
+
+  return `Equivalente estimado: ${formatFare(clover7Wallet.balance * clover7Wallet.conversionRate)}`;
+}
+
+function renderClover7Transactions() {
+  return clover7Wallet.transactions
+    .map(
+      (transaction) => `
+        <article class="clover-transaction">
+          <span class="clover-transaction-icon">${transaction.type.slice(0, 2).toUpperCase()}</span>
+          <span>
+            <strong>${transaction.title}</strong>
+            <small>${transaction.type} - ${transaction.meta}</small>
+          </span>
+          <strong>${transaction.amount}</strong>
+        </article>
+      `,
+    )
+    .join("");
+}
+
+function renderClover7Panel(view = "home") {
+  setStatus("found", "Clover7 aberta com seguranca");
+  const viewCopy = {
+    home: {
+      eyebrow: "Carteira digital",
+      title: "Clover7 CLV7",
+      text: "O FUTURO E NOSSO. O MOVIMENTO E AGORA.",
+    },
+    send: {
+      eyebrow: "Enviar CLV7",
+      title: "Transferencia segura",
+      text: "Informe destinatario, valor e confirme com autenticacao. Esta tela esta preparada para usuario RIDE7, ID Clover7, QR Code ou endereco futuro.",
+    },
+    receive: {
+      eyebrow: "Receber CLV7",
+      title: "Seu QR Code Clover7",
+      text: "Compartilhe o identificador ou defina um valor para gerar um QR Code correspondente.",
+    },
+    buy: {
+      eyebrow: "Comprar CLV7",
+      title: "Funcao preparada",
+      text: "Compra e conversao ficam bloqueadas ate validacao juridica, regulatoria e integracao com parceiro financeiro autorizado.",
+    },
+    scan: {
+      eyebrow: "Escanear",
+      title: "Leitor QR Code",
+      text: "Leitor preparado para pagamentos e transferencias. Em producao, solicita permissao da camera do aparelho.",
+    },
+  }[view];
+
+  const secondaryView =
+    view === "send"
+      ? `
+        <div class="clover-form">
+          <label>Destinatario</label>
+          <input value="@joao.ride7" />
+          <label>Valor</label>
+          <input value="150 CLV7" />
+          <article>
+            <span>Taxa</span>
+            <strong>0 CLV7 demo</strong>
+          </article>
+          <button class="request-button" type="button" data-clover-action="confirm-send">Revisar envio</button>
+        </div>
+      `
+      : view === "receive"
+        ? `
+          <div class="clover-receive-box">
+            <div class="clover-qr" aria-label="QR Code demonstrativo Clover7">
+              ${Array.from({ length: 49 }, (_, index) => `<span class="${[0, 1, 5, 6, 8, 12, 14, 17, 19, 21, 24, 28, 31, 35, 37, 40, 42, 43, 47, 48].includes(index) ? "dark" : ""}"></span>`).join("")}
+            </div>
+            <strong>${clover7Wallet.id}</strong>
+            <small>Receber 150 CLV7</small>
+            <div class="clover-inline-actions">
+              <button type="button" data-clover-action="copy">Copiar</button>
+              <button type="button" data-clover-action="share">Compartilhar</button>
+            </div>
+          </div>
+        `
+        : view === "buy" || view === "scan"
+          ? `
+            <article class="clover-warning">
+              <strong>Compliance primeiro</strong>
+              <span>CLV7 nao e apresentado como investimento, nao promete valorizacao e depende de regras do backend para conversao, Pix e parceiros.</span>
+            </article>
+          `
+          : "";
+
+  clientSheet.innerHTML = `
+    <div class="sheet-handle"></div>
+    <section class="clover-panel" aria-label="Clover7 CLV7">
+      <div class="clover-hero">
+        <img src="./assets/clover7-logo.svg" alt="Clover7" />
+        <div>
+          <p>${viewCopy.eyebrow}</p>
+          <h2>${viewCopy.title}</h2>
+          <span>${viewCopy.text}</span>
+        </div>
+      </div>
+
+      <article class="clover-balance-card">
+        <span>Saldo total</span>
+        <strong>${clover7Wallet.balance.toLocaleString("pt-BR", { minimumFractionDigits: 2 })} CLV7</strong>
+        <small>${clover7FiatText()}</small>
+      </article>
+
+      <div class="clover-action-grid">
+        <button type="button" data-clover-action="send">Enviar</button>
+        <button type="button" data-clover-action="receive">Receber</button>
+        <button type="button" data-clover-action="buy">Comprar</button>
+        <button type="button" data-clover-action="scan">Escanear</button>
+      </div>
+
+      ${secondaryView}
+
+      <div class="clover-mini-grid">
+        <article>
+          <span>Recompensas</span>
+          <strong>+${clover7Wallet.rewards} CLV7</strong>
+          <small>Corridas, indicacoes e campanhas.</small>
+        </article>
+        <article>
+          <span>Indicacao</span>
+          <strong>${clover7Wallet.referral}</strong>
+          <small>Anti-fraude preparado para liberar bonus.</small>
+        </article>
+        <article>
+          <span>Seguranca</span>
+          <strong>${clover7Wallet.security}</strong>
+          <small>Limites, logs e confirmacao sensivel.</small>
+        </article>
+        <article>
+          <span>Carteira</span>
+          <strong>${clover7Wallet.id}</strong>
+          <small>Endereco blockchain aparece apenas quando habilitado.</small>
+        </article>
+      </div>
+
+      <section class="clover-history">
+        <div class="section-title">
+          <strong>Historico</strong>
+          <span>Auditavel</span>
+        </div>
+        ${renderClover7Transactions()}
+      </section>
+
+      <button class="secondary-button" type="button" data-back-selection>Voltar para corridas</button>
+    </section>
+  `;
+}
+
 function renderClientProfilePanel() {
   setStatus("", "Perfil do passageiro aberto");
   const photo = localStorage.getItem(CLIENT_PHOTO_KEY);
@@ -378,7 +563,7 @@ function renderRideOptions() {
 
 function renderPayments() {
   return payments
-    .map((payment) => `<button class="payment-button ${payment === selectedPayment ? "active" : ""}" type="button" data-payment="${payment}">${payment}</button>`)
+    .map((payment) => `<button class="payment-button ${payment === selectedPayment ? "active" : ""} ${payment === "Clover7" ? "clover-payment" : ""}" type="button" data-payment="${payment}">${payment === "Clover7" ? '<img src="./assets/clover7-logo.svg" alt="" /> CLV7' : payment}</button>`)
     .join("");
 }
 
@@ -755,6 +940,30 @@ clientSheet.addEventListener("click", (event) => {
     return;
   }
 
+  const cloverAction = event.target.closest("[data-clover-action]");
+  if (cloverAction) {
+    const action = cloverAction.dataset.cloverAction;
+    if (["send", "receive", "buy", "scan"].includes(action)) {
+      renderClover7Panel(action);
+      return;
+    }
+
+    if (action === "confirm-send") {
+      clover7Wallet.transactions.unshift({
+        type: "Enviado",
+        title: "Envio para @joao.ride7",
+        amount: "-150 CLV7",
+        meta: "Agora - TX-CLV7-DEMO - Aguardando autenticacao",
+      });
+      clover7Wallet.balance -= 150;
+      renderClover7Panel("home");
+      return;
+    }
+
+    setStatus("found", action === "copy" ? "Identificador Clover7 copiado" : "Compartilhamento Clover7 preparado");
+    return;
+  }
+
   if (event.target.closest("[data-negotiate-toggle]")) {
     negotiateEnabled = event.target.checked;
     syncNegotiatedAmount();
@@ -847,6 +1056,10 @@ document.addEventListener("click", (event) => {
     renderWalletPanel();
   }
 
+  if (action === "clover7") {
+    renderClover7Panel();
+  }
+
   if (action === "support") {
     renderSupportPanel();
   }
@@ -917,7 +1130,9 @@ window.addEventListener("storage", (event) => {
 
 const clientView = new URLSearchParams(window.location.search).get("view");
 
-if (clientView === "profile") {
+if (clientView === "clover7") {
+  renderClover7Panel();
+} else if (clientView === "profile") {
   renderClientProfilePanel();
 } else {
   renderSelection();

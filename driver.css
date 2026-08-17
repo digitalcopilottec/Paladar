@@ -1468,6 +1468,154 @@ button {
   line-height: 1.5;
 }
 
+.driver-clover-panel {
+  display: grid;
+  gap: 12px;
+}
+
+.driver-clover-hero,
+.driver-clover-balance,
+.driver-clover-grid article,
+.driver-clover-rewards article {
+  border: 1px solid rgba(216, 168, 61, 0.32);
+  border-radius: 8px;
+}
+
+.driver-clover-hero {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  background:
+    radial-gradient(circle at 0 0, rgba(53, 243, 154, 0.24), transparent 48%),
+    linear-gradient(135deg, #07110a, #111412 74%);
+  color: #ffffff;
+}
+
+.driver-clover-hero img {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  object-fit: cover;
+}
+
+.driver-clover-hero p,
+.driver-clover-hero h2,
+.driver-clover-hero small {
+  display: block;
+  margin: 0;
+}
+
+.driver-clover-hero p {
+  color: #35f39a;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.driver-clover-hero h2 {
+  margin: 5px 0;
+  font-size: 23px;
+  line-height: 1;
+}
+
+.driver-clover-hero small {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.driver-clover-balance {
+  padding: 14px;
+  background:
+    linear-gradient(135deg, rgba(216, 168, 61, 0.22), transparent 46%),
+    #07110a;
+  color: #ffffff;
+}
+
+.driver-clover-balance span,
+.driver-clover-balance small,
+.driver-clover-grid span,
+.driver-clover-grid small,
+.driver-clover-rewards small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.driver-clover-balance span,
+.driver-clover-balance small {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.driver-clover-balance strong {
+  display: block;
+  margin: 7px 0;
+  font-size: 31px;
+  line-height: 1;
+}
+
+.driver-clover-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.driver-clover-actions button {
+  min-height: 44px;
+  border: 1px solid rgba(13, 143, 104, 0.34);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(53, 243, 154, 0.16), rgba(216, 168, 61, 0.12)),
+    #111412;
+  color: #ffffff;
+  padding: 0 8px;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.driver-clover-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.driver-clover-grid article {
+  padding: 12px;
+  background: #f8faf7;
+}
+
+.driver-clover-grid strong {
+  display: block;
+  margin: 6px 0;
+  font-size: 15px;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.driver-clover-rewards {
+  display: grid;
+  gap: 8px;
+}
+
+.driver-clover-rewards article {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 11px;
+  background: #ffffff;
+}
+
+.driver-clover-rewards article > strong {
+  color: var(--green);
+  font-size: 14px;
+}
+
 @keyframes pulse {
   50% {
     box-shadow: 0 0 0 13px rgba(246, 195, 71, 0.06);
